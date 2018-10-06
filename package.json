@@ -1,0 +1,50 @@
+{
+  "name": "identicon",
+  "version": "0.0.1",
+  "description": "identicon for the cryptoniacs",
+  "main": "dist/identicon.cjs.js",
+  "module": "dist/identicon.esm.js",
+  "browser": "dist/identicon.umd.js",
+  "unpkg": "dist/identicon.umd.js",
+  "devDependencies": {
+    "rollup": "^0.66.3",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-livereload": "^0.6.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-serve": "^0.6.0",
+    "rollup-plugin-terser": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"*** TODO TESTS ***\"",
+    "clean": "rm -rf dist && rm -rf dev",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c -w --sourcemap",
+    "prepublishOnly": "npm run clean && npm run test && npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ETCDEVTeam/identicon.git"
+  },
+  "keywords": [
+    "crypto",
+    "identicon"
+  ],
+  "author": "Richard Schumann <richard@schumanncombo.com> (http://schumanncombo.com)",
+  "contributors": [
+    "Oori <o@pluggable.biz> (http://github.com/oori)"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/ETCDEVTeam/identicon/issues"
+  },
+  "homepage": "https://ETCDEVTeam.github.io/identicon",
+  "engines": {
+    "node": ">=8"
+  }
+}
