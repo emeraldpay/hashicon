@@ -92,7 +92,7 @@ function renderer(hash, params) {
 
 
 
-
+/*
 // draws a single canvas with id(hash)
 function draw(id, params) {
 	var i = new Object
@@ -155,5 +155,5 @@ function draw(id, params) {
 
 	return canvas;
 }
-
+*/
 export default renderer;
