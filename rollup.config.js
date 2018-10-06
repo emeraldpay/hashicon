@@ -7,6 +7,7 @@ import livereload from 'rollup-plugin-livereload'
 
 import pkg from './package.json';
 const production = (process.env.BUILD == 'production');
+const buildDir = production ? 'dist' : 'dev';
 
 export default [
   // browser-friendly UMD build
@@ -14,7 +15,7 @@ export default [
     input: 'src/main.js',
     output: {
       name: 'identicon',
-      dir: production ? '' : 'dev',
+      dir: buildDir,
       file: pkg.browser,
       // sourcemap: true,
       format: 'umd'
@@ -27,11 +28,11 @@ export default [
       !production && serve({
         open: true,
         contentBase: ".",
-        openPage: "/examples/index.htm",
+        openPage: `/${buildDir}/index.htm`,
         host: "localhost",
         port: 3000
       }),
-      !production && livereload()
+      !production && livereload(buildDir)
     ]
   },
 
@@ -39,8 +40,8 @@ export default [
   {
     input: 'src/main.js',
     output: [
-      { file: pkg.main, format: 'cjs', dir: production ? '' : 'dev' },
-      { file: pkg.module, format: 'es', dir: production ? '' : 'dev' }
+      { file: pkg.main, format: 'cjs', dir: buildDir },
+      { file: pkg.module, format: 'es', dir: buildDir }
     ]
   }
 ];

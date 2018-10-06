@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"*** TODO TESTS ***\"",
-    "clean": "rm -rf dist && rm -rf dev",
+    "clean": "rm -rf dist",
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c -w --sourcemap",
     "prepublishOnly": "npm run clean && npm run test && npm run build"
