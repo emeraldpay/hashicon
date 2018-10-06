@@ -10,6 +10,8 @@ Identicon
 TODO: Richard.
 A tiny library for generating identicon.
 
+[Example page](https://oori.github.io/identicons-temp/examples/)
+
 ![Sample identicon image](examples/identicons.png "Identicons")
 
 
