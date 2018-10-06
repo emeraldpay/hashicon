@@ -59,7 +59,7 @@ function draw(id, config) {
 	i.saturation = config.saturation.min + (chunks[1] % (config.saturation.max-config.saturation.min));
 	i.lightness = config.lightness.min + (chunks[2] % (config.lightness.max-config.lightness.min));
 	// i.shift = i.hue + (config.shift.min + (chunks[3] % (config.lightness.max-config.lightness.min)));
-	i.shift = config.shift.min + (chunk[3] % (config.shift.max-config.shift.min));
+	i.shift = config.shift.min + (chunks[3] % (config.shift.max-config.shift.min));
 	i.figure = 0 + (chunks[4] % (0-figures.length));
 	i.figurealpha = config.figurealpha.min + ( chunks[5] % (config.figurealpha.max- config.figurealpha.min));
 
