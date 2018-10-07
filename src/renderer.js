@@ -1,103 +1,71 @@
 import figures from './figures';
 import sprite from './sprite';
+import shapes from './shapes';
+import { chunkHash, createCanvas } from './utils';
 
-// triangle shapes left and right
-const shapes = [
-	{ x1:0, y1:50, x2:50, y2:25, x3:50, y3:75 },
-	{ x1:0, y1:0, x2:50, y2:25, x3:0, y3:50 }
-]
 
-function renderer(hash, config) {
-	return draw(hash, config);
+/**
+ * map numbers for param
+ * @param  {Object} param Parameter containing min and max values
+ * @param  {Number} value Number to process
+ * @return {Number}       Normalised number
+ */
+function processParam(param, value) {
+	return param.min + (value % ( param.max - param.min ));
 }
 
 
-// draws a single canvas with id(hash)
-function draw(id, config) {
-	var i = new Object
+/**
+ * Canvas renderer
+ * @param  {String} hash   Hex string seed value
+ * @param  {Object} params Rendering parameters
+ * @return {Object}        Canvas HTML object
+ */
+function renderer(hash, params) {
+	const chunks = chunkHash(hash, 6);	// Parse hash and calculate param values
+	const hue = processParam(params.hue, chunks[0]);
+	const saturation = processParam(params.saturation, chunks[1]);
+	const lightness = processParam(params.lightness, chunks[2]);
+	const shift = processParam(params.shift, chunks[3]);
+	const figurealpha = processParam(params.figurealpha, chunks[5]);
+	const figure = chunks[4] % figures.length;
 
-	const chunks = chunkHash(id, 6);
 
-	i.id = id;
-	i.hash = id.split("x").pop();
-	i.hue = config.hue.min + (chunks[0] % (config.hue.max-config.hue.min));
-	i.saturation = config.saturation.min + (chunks[1] % (config.saturation.max-config.saturation.min));
-	i.lightness = config.lightness.min + (chunks[2] % (config.lightness.max-config.lightness.min));
-	// i.shift = i.hue + (config.shift.min + (chunks[3] % (config.lightness.max-config.lightness.min)));
-	i.shift = config.shift.min + (chunks[3] % (config.shift.max-config.shift.min));
-	i.figure = 0 + (chunks[4] % (0-figures.length));
-	i.figurealpha = config.figurealpha.min + ( chunks[5] % (config.figurealpha.max- config.figurealpha.min));
+	// Draw on canvas
+	const size = params.size || 100;
+	const canvas = createCanvas(size);
+	const ctx = canvas.getContext('2d');
 
-	var canvas = document.createElement('canvas');
-	var ctx = canvas.getContext('2d');
-	canvas.height = canvas.width = 200
+	sprite.forEach((line, i) => {
 
-	for (var o in sprite){
+		let light = params.draw.light ? params.light[line.light] : 1;
+		if(params.draw.fx) light = light / params.light.fx;		// TODO: Richi, I don't get this one.. it's not really needed
 
+		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
+		const variation = params.draw.variation ? processParam(params.variation, x) : 0;
+
+		// Draw on canvas
 		ctx.beginPath();
 
-		if (!sprite[o].hidden) {
-			const shape = sprite[o].shape
-			ctx.moveTo( shapes[shape].x1 + sprite[o].x, shapes[shape].y1 + sprite[o].y );
-			ctx.lineTo( shapes[shape].x2 + sprite[o].x, shapes[shape].y2 + sprite[o].y );
-			ctx.lineTo( shapes[shape].x3 + sprite[o].x , shapes[shape].y3 + sprite[o].y );
+		if (!line.hidden) {
+			const shape = shapes[line.shape];
+			ctx.moveTo( size * (shape.x1 + line.x), size * (shape.y1 + line.y) );
+			ctx.lineTo( size * (shape.x2 + line.x), size * (shape.y2 + line.y) );
+			ctx.lineTo( size * (shape.x3 + line.x) , size * (shape.y3 + line.y) );
 		}
 
-		let light = 1;
-		if(config.draw.light==true){
-			if (sprite[o].light == "top") {  light = config.light.top }
-			if (sprite[o].light == "left") {  light = config.light.left }
-			if (sprite[o].light == "right") {  light = config.light.right }
-		}
-
-		if(config.draw.fx==true){
-			light = light / config.light.fx;
-		}  /* else { fx = 0; }   <--- NOT IN USE */
-
-		let variation = 0;
-		if(config.draw.variation==true){
-			variation = config.variation.min + ( parseInt(i.hash.substr(o,1), 16) % ( config.variation.min - config.variation.max ));
-		}
-
-		// fill with hue, saturation, lightness, 100% alpha
-		ctx.fillStyle = 'hsla('+ (i.hue+variation) +', '+i.saturation+'%, '+(i.lightness+variation+light)+'%,1)';
+		// Fill background
+		ctx.fillStyle = `hsla(${hue+variation}, ${saturation}%, ${lightness+variation+light}%, 1)`;
 		ctx.fill();
 
 		// draw figure ( whats when opacity of data > 0 )
-		if( figures[i.figure][o] > 2 ){
-			const alpha = figures[i.figure][o] * i.figurealpha / 10;
-			ctx.fillStyle = 'hsla('+ (i.shift+variation) +', '+i.saturation+'%, '+(i.lightness+variation+light)+'%,'+ alpha +')';
+		if( figures[figure][i] > 2 ){		// TODO:  two ? not 0?
+			const alpha = figures[figure][i] * figurealpha / 10;
+			ctx.fillStyle = `hsla(${shift+variation}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
 			ctx.fill();
 		}
-
-	}
-
+	});
 	return canvas;
 }
-
-
-
-
-
-
-
-
-
-// outputs n even integers from a hash
-function chunkHash(hash, n, prefix="0x") {
-	hash = hash.split(prefix).pop();
-	const chunks = Math.floor(  hash.length / n );
-
-	const array = hash.match(new RegExp('.{1,' + chunks + '}', 'g'));
-
-	// hex first 4 digits > int
-	for (let i = 0; i < array.length; i++) {
-	  array[i] = parseInt(array[i].substring(1, 5), 16);
-	}
-
-	return array
-}
-
-
 
 export default renderer;
