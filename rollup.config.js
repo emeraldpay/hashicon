@@ -10,38 +10,38 @@ const production = (process.env.BUILD == 'production');
 const buildDir = production ? 'dist' : 'dev';
 
 export default [
-  // browser-friendly UMD build
-  {
-    input: 'src/main.js',
-    output: {
-      name: 'identicon',
-      dir: buildDir,
-      file: pkg.browser,
-      // sourcemap: true,
-      format: 'umd'
-    },
-    plugins: [
-      resolve(), // so Rollup can find `dependencies`
-      commonjs(), // so Rollup can convert `ms` to an ES module
-      // babel({ exclude: ['node_modules/**'] }),
-      production && terser(), // minify, but only in production
-      !production && serve({
-        open: true,
-        contentBase: ".",
-        openPage: `/${buildDir}/index.htm`,
-        host: "localhost",
-        port: 3000
-      }),
-      !production && livereload(buildDir)
-    ]
-  },
+	// browser-friendly UMD build
+	{
+		input: 'src/main.js',
+		output: {
+			name: 'identicon',
+			dir: buildDir,
+			file: pkg.browser,
+			// sourcemap: true,
+			format: 'umd'
+		},
+		plugins: [
+			resolve(), // so Rollup can find `dependencies`
+			commonjs(), // so Rollup can convert `ms` to an ES module
+			// babel({ exclude: ['node_modules/**'] }),
+			production && terser(), // minify, but only in production
+			!production && serve({
+				open: true,
+				contentBase: ".",
+				openPage: `/${buildDir}/index.htm`,
+				host: "localhost",
+				port: 3000
+			}),
+			!production && livereload(buildDir)
+		]
+	},
 
-  // CommonJS (for Node) and ES module (for bundlers) build.
-  {
-    input: 'src/main.js',
-    output: [
-      { file: pkg.main, format: 'cjs', dir: buildDir },
-      { file: pkg.module, format: 'es', dir: buildDir }
-    ]
-  }
+	// CommonJS (for Node) and ES module (for bundlers) build.
+	{
+		input: 'src/main.js',
+		output: [
+			{ file: pkg.main, format: 'cjs', dir: buildDir },
+			{ file: pkg.module, format: 'es', dir: buildDir }
+		]
+	}
 ];
