@@ -14,7 +14,6 @@ function processParam(param, value) {
 	return param.min + (value % ( param.max - param.min ));
 }
 
-// function getValue(hash, position, )
 
 /**
  * Canvas renderer
@@ -23,18 +22,13 @@ function processParam(param, value) {
  * @return {Object}        Canvas HTML object
  */
 function renderer(hash, params) {
-	// return draw(hash, params);
-	// console.log(params);
-
-	const chunks = chunkHash(hash, 6);
-
+	const chunks = chunkHash(hash, 6);	// Parse hash and calculate param values
 	const hue = processParam(params.hue, chunks[0]);
 	const saturation = processParam(params.saturation, chunks[1]);
 	const lightness = processParam(params.lightness, chunks[2]);
 	const shift = processParam(params.shift, chunks[3]);
-	const figurealpha = processParam(params.figurealpha, chunks[4]);
-	const figure = chunks[5] % figures.length;
-	// console.log(hue,saturation,lightness,shift,figure,figurealpha);
+	const figurealpha = processParam(params.figurealpha, chunks[5]);
+	const figure = chunks[4] % figures.length;
 
 
 	// Draw on canvas
@@ -70,75 +64,8 @@ function renderer(hash, params) {
 			ctx.fillStyle = `hsla(${shift+variation}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
 			ctx.fill();
 		}
-		// ctx.closePath();
 	});
 	return canvas;
 }
 
-
-
-/*
-// draws a single canvas with id(hash)
-function draw(id, params) {
-	var i = new Object
-
-	const chunks = chunkHash(id, 6);
-
-	i.id = id;
-	i.hash = id.split("x").pop();
-	i.hue = params.hue.min + (chunks[0] % (params.hue.max-params.hue.min));
-	i.saturation = params.saturation.min + (chunks[1] % (params.saturation.max-params.saturation.min));
-	i.lightness = params.lightness.min + (chunks[2] % (params.lightness.max-params.lightness.min));
-	// i.shift = i.hue + (params.shift.min + (chunks[3] % (params.lightness.max-params.lightness.min)));
-	i.shift = params.shift.min + (chunks[3] % (params.shift.max-params.shift.min));
-	i.figure = 0 + (chunks[4] % (0-figures.length));
-	i.figurealpha = params.figurealpha.min + ( chunks[5] % (params.figurealpha.max- params.figurealpha.min));
-
-	var canvas = document.createElement('canvas');
-	var ctx = canvas.getContext('2d');
-	canvas.height = canvas.width = 200
-
-	for (var o in sprite){
-
-		ctx.beginPath();
-
-		if (!sprite[o].hidden) {
-			const shape = sprite[o].shape
-			ctx.moveTo( shapes[shape].x1 + sprite[o].x, shapes[shape].y1 + sprite[o].y );
-			ctx.lineTo( shapes[shape].x2 + sprite[o].x, shapes[shape].y2 + sprite[o].y );
-			ctx.lineTo( shapes[shape].x3 + sprite[o].x , shapes[shape].y3 + sprite[o].y );
-		}
-
-		let light = 1;
-		if(params.draw.light==true){
-			if (sprite[o].light == "top") {  light = params.light.top }
-			if (sprite[o].light == "left") {  light = params.light.left }
-			if (sprite[o].light == "right") {  light = params.light.right }
-		}
-
-		if(params.draw.fx==true){
-			light = light / params.light.fx;
-		}  // /* else { fx = 0; }   <--- NOT IN USE
-
-		let variation = 0;
-		if(params.draw.variation==true){
-			variation = params.variation.min + ( parseInt(i.hash.substr(o,1), 16) % ( params.variation.min - params.variation.max ));
-		}
-
-		// fill with hue, saturation, lightness, 100% alpha
-		ctx.fillStyle = 'hsla('+ (i.hue+variation) +', '+i.saturation+'%, '+(i.lightness+variation+light)+'%,1)';
-		ctx.fill();
-
-		// draw figure ( whats when opacity of data > 0 )
-		if( figures[i.figure][o] > 2 ){
-			const alpha = figures[i.figure][o] * i.figurealpha / 10;
-			ctx.fillStyle = 'hsla('+ (i.shift+variation) +', '+i.saturation+'%, '+(i.lightness+variation+light)+'%,'+ alpha +')';
-			ctx.fill();
-		}
-
-	}
-
-	return canvas;
-}
-*/
 export default renderer;

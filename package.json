@@ -37,7 +37,10 @@
   ],
   "author": "Richard Schumann <richard@schumanncombo.com> (http://schumanncombo.com)",
   "contributors": [
-    "Oori <o@pluggable.biz> (http://github.com/oori)"
+    {
+      "name": "Oori | Pluggable",
+      "url": "http://github.com/oori"
+    }
   ],
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
