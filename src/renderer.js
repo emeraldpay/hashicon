@@ -1,31 +1,15 @@
 import figures from './figures';
 import sprite from './sprite';
-
-// triangle shapes left and right
-const shapes = [
-	{ x1:0, y1:50, x2:50, y2:25, x3:50, y3:75 },
-	{ x1:0, y1:0, x2:50, y2:25, x3:0, y3:50 }
-]
+import shapes from './shapes';
+import { chunkHash, createCanvas } from './utils';
 
 
-
-// outputs n even integers from a hash
-function chunkHash(hash, n, prefix="0x") {
-	hash = hash.split(prefix).pop();
-	const chunks = Math.floor(  hash.length / n );
-
-	const array = hash.match(new RegExp('.{1,' + chunks + '}', 'g'));
-
-	// hex first 4 digits > int
-	for (let i = 0; i < array.length; i++) {
-	  array[i] = parseInt(array[i].substring(1, 5), 16);
-	}
-
-	return array
-}
-
-
-
+/**
+ * map numbers for param
+ * @param  {Object} param Parameter containing min and max values
+ * @param  {Number} value Number to process
+ * @return {Number}       Normalised number
+ */
 function processParam(param, value) {
 	return param.min + (value % ( param.max - param.min ));
 }
@@ -53,14 +37,15 @@ function renderer(hash, params) {
 	// console.log(hue,saturation,lightness,shift,figure,figurealpha);
 
 
-	const canvas = document.createElement('canvas');
+	// Draw on canvas
+	const size = params.size || 100;
+	const canvas = createCanvas(size);
 	const ctx = canvas.getContext('2d');
-	canvas.height = canvas.width = 200;		// TODO: HiDPI
 
 	sprite.forEach((line, i) => {
 
 		let light = params.draw.light ? params.light[line.light] : 1;
-		if(params.draw.fx) light = light / params.light.fx;		// TODO: Richi, I don't get this one..
+		if(params.draw.fx) light = light / params.light.fx;		// TODO: Richi, I don't get this one.. it's not really needed
 
 		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
 		const variation = params.draw.variation ? processParam(params.variation, x) : 0;
@@ -70,9 +55,9 @@ function renderer(hash, params) {
 
 		if (!line.hidden) {
 			const shape = shapes[line.shape];
-			ctx.moveTo( shape.x1 + line.x, shape.y1 + line.y );
-			ctx.lineTo( shape.x2 + line.x, shape.y2 + line.y );
-			ctx.lineTo( shape.x3 + line.x , shape.y3 + line.y );
+			ctx.moveTo( size * (shape.x1 + line.x), size * (shape.y1 + line.y) );
+			ctx.lineTo( size * (shape.x2 + line.x), size * (shape.y2 + line.y) );
+			ctx.lineTo( size * (shape.x3 + line.x) , size * (shape.y3 + line.y) );
 		}
 
 		// Fill background
