@@ -37,12 +37,10 @@ function renderer(hash, params) {
 	const ctx = canvas.getContext('2d');
 
 	sprite.forEach((line, i) => {
-
-		let light = params.draw.light ? params.light[line.light] : 1;
-		if(params.draw.fx) light = light / params.light.fx;		// TODO: Richi, I don't get this one.. it's not really needed
+		const light = params.light.enabled ? params.light[line.light] : 1;
 
 		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
-		const variation = params.draw.variation ? processParam(params.variation, x) : 0;
+		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
 
 		// Draw on canvas
 		ctx.beginPath();
