@@ -19,19 +19,31 @@ Browser
 ---
 
 ```javascript
-https://www.jsdelivr.com/?docs=gh
-unpkg.com/
+<script src="https://www.jsdelivr.com/?docs=gh"></script>
+<script src="http://unpkg.com/identicon"></script>
+
 const hash = "...";
 document.body.appendChild( identicon(hash) ); // icon is a canvas element
+document.body.appendChild( identicon(hash), 80 ); // 80px (with HiDPI/retina adjustments)
 
 // or with custom configuration
-const config = {...};
-const icon = identicon(hash, config);
+const params = {...};
+const icon = identicon(hash, params);
 document.body.appendChild(icon); // icon is a canvas element
 ```
 
+Saving to PNG:  ```right-click "Save Image As..."```
+
+
+
+Params
+---
+TODO
+
+
 Node
 ---
+TODO   (see identicons.esm)
 
 
 Development
