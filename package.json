@@ -32,10 +32,14 @@
     "url": "git+https://github.com/ETCDEVTeam/identicon.git"
   },
   "keywords": [
-    "crypto",
-    "identicon"
+    "ident", "icon", "identicon", "generate", "hash", "generator", "figure", "image", 
+     "dapp", "app", "wallet", "smart", "contract", 
+    "crypto", "blockchain", "adress", "key", "altcoin", "token", "currency", "decentral", "chain",
+    "SHA1", "SHA2", "SHA3", "SHA-256", "Scrypt", "X11", "Blake (2b)", "Quark", "Qubit", "Myr-Groestl", "Skein", "LBRY", "Blake (14r)",
+    "Pascal", "X11Gost", "CryptoNight", "Equihash", "Ethash", "Zhash", "CNSaber", "CNHeavy", "CryptoNightV7", "Equihash", "Lyra2REv2", "NeoScrypt", "TimeTravel10", "X16R", "Lyra2z", "PHI2", "Xevan", "Hex", "PHI1612",   
+    "bitcoin", "ethereum", "ripple", "cash", "eos", "stellar", "litecoin", "tether", "cardano", "monero", "tron", "iota", "dash", "binance", "neo", "ethereum classic", "nem", "tezos", "vechain", "dogecoin", "zcash", "maker", "omisego", "gold", "ontology", "bitecoin", "0x", "decred", "lisk", "qtum"
   ],
-  "author": "Richard Schumann <richard@schumanncombo.com> (http://schumanncombo.com)",
+  "author": "Richard Schumann <schumanncombo@gmail.com> (http://schumanncombo.com)",
   "contributors": [
     {
       "name": "Oori | Pluggable",
@@ -46,7 +50,7 @@
   "bugs": {
     "url": "https://github.com/ETCDEVTeam/identicon/issues"
   },
-  "homepage": "https://ETCDEVTeam.github.io/identicon",
+  "homepage": "https://ETCDEVTeam.github.io/hashicon",
   "engines": {
     "node": ">=8"
   }

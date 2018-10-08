@@ -4,15 +4,14 @@
 
 
 
-Identicon
-==========
+Hashicon
+========
 
-TODO: Richard.
-A tiny library for generating identicon.
+Generates a beautiful representation of any hash.
 
 [Example page](https://oori.github.io/identicons-temp/examples/)
 
-![Sample identicon image](examples/identicons.png "Identicons")
+![Sample identicon image](examples/hashicon.png "HashIcon")
 
 
 Browser
