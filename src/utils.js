@@ -1,15 +1,31 @@
-// Merge a `source` object to a `target` recursively
-// Source: https://gist.github.com/ahtcx/0cd94e62691f539160b32ecda18af3d6
-const deepMerge = (target, source) => {
-	// Iterate through `source` properties and if an `Object` set property to merge of `target` and `source` properties
-	for (let key of Object.keys(source)) {
-		// if (source[key] instanceof Object) Object.assign(source[key], merge(target[key], source[key]))
-		if (source[key] instanceof Object && key in target) Object.assign(source[key], deepMerge(target[key], source[key]));
-	}
+/**
+* Performs a deep merge of objects and returns new object. Does not modify
+* objects (immutable) and merges arrays via concatenation.
+*
+* @param {...object} objects - Objects to merge
+* @returns {object} New object with merged key/values
+*/
+const deepMerge = (...objects) => {
+  const isObject = obj => obj && typeof obj === 'object';
 
-	// Join `target` and modified `source`
-	Object.assign(target || {}, source);
-	return target;
+  return objects.reduce((prev, obj) => {
+    Object.keys(obj).forEach(key => {
+      const pVal = prev[key];
+      const oVal = obj[key];
+
+      if (Array.isArray(pVal) && Array.isArray(oVal)) {
+        prev[key] = pVal.concat(...oVal);
+      }
+      else if (isObject(pVal) && isObject(oVal)) {
+        prev[key] = deepMerge(pVal, oVal);
+      }
+      else {
+        prev[key] = oVal;
+      }
+    });
+
+    return prev;
+  }, {});
 }
 
 // outputs n even integers from a hash

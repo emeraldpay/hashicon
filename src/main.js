@@ -2,11 +2,12 @@ import renderer from './renderer.js';
 import params from './params';
 import { deepMerge } from './utils';
 
-export default function identicon(hash, _params = {}) {
-		// TODO: validate hash format
+export default function identicon(hash, override_params = {}) {
+	// TODO: validate hash format
 
-	return renderer(
-		hash,
-		deepMerge({...params}, _params)	// TODO: ugly hack to deep merge
-	);
+	// overload "override_params": allow to call with only size value (numeric)
+	let _params = Number.isInteger(override_params) ? { size: override_params } : {...override_params};
+	_params = deepMerge(params, _params);		// Deep merge
+
+	return renderer(hash, _params);
 }
