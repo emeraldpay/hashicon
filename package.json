@@ -31,10 +31,7 @@
     "type": "git",
     "url": "git+https://github.com/ETCDEVTeam/hashicon.git"
   },
-  "keywords": [
-    "crypto",
-    "hashicon"
-  ],
+  "keywords": ["hash", "icon", "avatar", "identicon", "generate", "generator", "visual", "canvas", "ethereum classic", "crypto"],
   "author": "Richard Schumann <schumanncombo@gmail.com> (http://schumanncombo.com)",
   "contributors": [
     {
