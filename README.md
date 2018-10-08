@@ -14,6 +14,7 @@ Generates a beautiful representation of any hash.
 ![Sample hashicon image](examples/hashicons.png "Hashicons")
 
 
+
 Browser
 ---
 
