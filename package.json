@@ -1,13 +1,13 @@
 {
-  "name": "identicon",
-  "version": "0.0.1",
-  "description": "identicon for the cryptoniacs",
-  "main": "dist/identicon.cjs.js",
-  "module": "dist/identicon.esm.js",
-  "browser": "dist/identicon.umd.js",
-  "unpkg": "dist/identicon.umd.js",
+  "name": "hashicon",
+  "version": "0.1.0",
+  "description": "hashicon for the cryptoniacs",
+  "main": "dist/hashicon.cjs.js",
+  "module": "dist/hashicon.esm.js",
+  "browser": "dist/hashicon.umd.js",
+  "unpkg": "dist/hashicon.umd.js",
   "devDependencies": {
-    "rollup": "^0.66.3",
+    "rollup": "^0.66.4",
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-livereload": "^0.6.0",
     "rollup-plugin-node-resolve": "^3.4.0",
@@ -29,13 +29,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ETCDEVTeam/identicon.git"
+    "url": "git+https://github.com/ETCDEVTeam/hashicon.git"
   },
   "keywords": [
     "crypto",
-    "identicon"
+    "hashicon"
   ],
-  "author": "Richard Schumann <richard@schumanncombo.com> (http://schumanncombo.com)",
+  "author": "Richard Schumann <schumanncombo@gmail.com> (http://schumanncombo.com)",
   "contributors": [
     {
       "name": "Oori | Pluggable",
@@ -44,9 +44,9 @@
   ],
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/ETCDEVTeam/identicon/issues"
+    "url": "https://github.com/ETCDEVTeam/hashicon/issues"
   },
-  "homepage": "https://ETCDEVTeam.github.io/identicon",
+  "homepage": "https://ETCDEVTeam.github.io/hashicon",
   "engines": {
     "node": ">=8"
   }

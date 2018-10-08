@@ -14,7 +14,7 @@ export default [
 	{
 		input: 'src/main.js',
 		output: {
-			name: 'identicon',
+			name: 'hashicon',
 			dir: buildDir,
 			file: pkg.browser,
 			// sourcemap: true,
