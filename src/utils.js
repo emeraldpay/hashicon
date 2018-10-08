@@ -51,7 +51,7 @@ const createCanvas = size => {
 	canvas.style.height = size + "px";
 
 	// Hi-DPI / Retina
-	var dpr = 4; //window.devicePixelRatio || 1;
+	var dpr = window.devicePixelRatio || 1;
 	canvas.width = size * dpr;
 	canvas.height = size * dpr;
 

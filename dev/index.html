@@ -37,24 +37,32 @@
 	<script>
 
 		const fixed = document.getElementById("fixed");
+
+		// "ugly" ones
+		fixed.append(identicon("0xa5151a7b6a9e32d89066202da744c860e500a202", 60));
+		fixed.append(identicon("0x7b6a9e32d2ca25151a8da744c860e500a9066202", 60));
+
+
+
+		// "Fixed" samples
 		const icon = identicon("0x2ca25151a7b6a9e32d89066202da744c860e500a", 40);
 		fixed.append(icon);
 
-
-		// Or in one liner
-		fixed.append(identicon("0x7b6a9e32d2ca25151a8da744c860e500a9066202", 60));
+		fixed.append(identicon("0x7ba9e32d2ca25151a8da7a44c860e500a9066202", 60));
 		let params = { size: 60 };
-		fixed.append(identicon("0xb6a9e32d2ca25151a8da744c860e500a9066202f", params));
+		fixed.append(identicon("0x00b6a9e32d2ca251a8da744c860e500a9066202f", params));
 		fixed.append(identicon("0x6a9e32d2ca25151a8da744c860e500a9066202fa", params));
 
 		// No params, all defaults
 		fixed.append(identicon("0xca25151a7b6a9e32d89066202da744c860e500a2"));
-		fixed.append(identicon("0xa25151a7b6a9e32d89066202da744c860e500a20"));
+		fixed.append(identicon("0xa2151a7b6a9e32d89066202da744c860e500a20a"));
 
 		// with a bunch of params
 		params = { size: 120, shift: { min: 160, max: 200 }, saturation: { min: 40 } };
 		fixed.append(identicon("0xa25151a7b6a9e32d89066202da744c860e500a20", params));
 		fixed.append(identicon("0xa5151a7b6a9e32d89066202da744c860e500a202", params));
+
+
 
 		// flat-style
 		const flat = {
@@ -64,8 +72,14 @@
 			shift: { min: 175, max: 185 },
 			light: { enabled: false }
 		};
-		fixed.append(identicon("0x51a7b6a9e32d89066202da744c860e500a202a51", flat));
-		fixed.append(identicon("0x02a5151a7b6a9e32d89066202da744c860e500a2", flat));
+		fixed.append(identicon("0x5107b609e32d89066202da744c860e500a202a51", flat));
+		fixed.append(identicon("0x020e101a701a9032089066202d0744c860e500a2", flat));
+
+
+		// "other" hashes
+		fixed.append(identicon("1234567890123456789012345678901234567890", 50));
+		fixed.append(identicon("12345678901234567890", 50));
+		fixed.append(identicon("123456789012345678901234", 50));
 	</script>
 
 
