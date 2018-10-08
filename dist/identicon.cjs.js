@@ -44,18 +44,34 @@ var shapes = [
 	{ x1:0, y1:0, x2:0.25, y2:0.125, x3:0, y3:0.25 }
 ];
 
-// Merge a `source` object to a `target` recursively
-// Source: https://gist.github.com/ahtcx/0cd94e62691f539160b32ecda18af3d6
-const deepMerge = (target, source) => {
-	// Iterate through `source` properties and if an `Object` set property to merge of `target` and `source` properties
-	for (let key of Object.keys(source)) {
-		// if (source[key] instanceof Object) Object.assign(source[key], merge(target[key], source[key]))
-		if (source[key] instanceof Object && key in target) Object.assign(source[key], deepMerge(target[key], source[key]));
-	}
+/**
+* Performs a deep merge of objects and returns new object. Does not modify
+* objects (immutable) and merges arrays via concatenation.
+*
+* @param {...object} objects - Objects to merge
+* @returns {object} New object with merged key/values
+*/
+const deepMerge = (...objects) => {
+  const isObject = obj => obj && typeof obj === 'object';
 
-	// Join `target` and modified `source`
-	Object.assign(target || {}, source);
-	return target;
+  return objects.reduce((prev, obj) => {
+    Object.keys(obj).forEach(key => {
+      const pVal = prev[key];
+      const oVal = obj[key];
+
+      if (Array.isArray(pVal) && Array.isArray(oVal)) {
+        prev[key] = pVal.concat(...oVal);
+      }
+      else if (isObject(pVal) && isObject(oVal)) {
+        prev[key] = deepMerge(pVal, oVal);
+      }
+      else {
+        prev[key] = oVal;
+      }
+    });
+
+    return prev;
+  }, {});
 };
 
 // outputs n even integers from a hash
@@ -124,12 +140,10 @@ function renderer(hash, params) {
 	const ctx = canvas.getContext('2d');
 
 	sprite.forEach((line, i) => {
-
-		let light = params.draw.light ? params.light[line.light] : 1;
-		if(params.draw.fx) light = light / params.light.fx;		// TODO: Richi, I don't get this one.. it's not really needed
+		const light = params.light.enabled ? params.light[line.light] : 1;
 
 		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
-		const variation = params.draw.variation ? processParam(params.variation, x) : 0;
+		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
 
 		// Draw on canvas
 		ctx.beginPath();
@@ -146,7 +160,7 @@ function renderer(hash, params) {
 		ctx.fill();
 
 		// draw figure ( whats when opacity of data > 0 )
-		if( figures[figure][i] > 2 ){		// TODO:  two ? not 0?
+		if( figures[figure][i] > 0 ){
 			const alpha = figures[figure][i] * figurealpha / 10;
 			ctx.fillStyle = `hsla(${shift+variation}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
 			ctx.fill();
@@ -159,20 +173,20 @@ var params = {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
-	variation: { min: 2, max: 6 },
+	variation: { min: 2, max: 6, enabled: true },
 	shift: { min: 240, max: 540 },
 	figurealpha: { min: .7, max: 1.2 },
-	light:{ top:10, right:-8, left:-4, fx:0.85 },
-	draw: { variation: true, light: true, fx: true }
+	light:{ top:10, right:-8, left:-4, enabled: true}
 };
 
-function identicon(hash, _params = {}) {
-		// TODO: validate hash format
+function identicon(hash, override_params = {}) {
+	// TODO: validate hash format
 
-	return renderer(
-		hash,
-		deepMerge({...params}, _params)	// TODO: ugly hack to deep merge
-	);
+	// overload "override_params": allow to call with only size value (numeric)
+	let _params = Number.isInteger(override_params) ? { size: override_params } : {...override_params};
+	_params = deepMerge(params, _params);		// Deep merge
+
+	return renderer(hash, _params);
 }
 
 module.exports = identicon;

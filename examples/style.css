@@ -1,0 +1,115 @@
+html {
+	background-color: #F7F9F8;
+	color: #222;
+	font-size: 140%;
+	line-height: 1.6em;
+	font-family: 'Rubik', sans-serif; }
+
+body {
+	margin: 2em 3em; }
+
+section {
+	padding-top: 1.5em;
+	padding-bottom: 3em;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+
+h1 {
+	font-size: 130%;
+	line-height: 1.6em;
+	font-weight: 400;
+	margin-bottom: 1em; }
+
+h2 {
+	font-size: 130%;
+	line-height: 1.6em;
+	font-weight: 400; }
+
+a {
+	color: #00C853; }
+	a:hover {
+		color: #00fb68; }
+
+section#input {
+	padding: 2em 0em;
+	margin-bottom: 2em;
+	background-color: #EAEFEC;
+	border-bottom: none;
+	text-align: center; }
+	section#input h1 {
+		display: block;
+		text-align: center; }
+	section#input input[type="text"] {
+		width: 60%;
+		font-size: 100%;
+		color: #00C853;
+		background: transparent;
+		border: none;
+		border-bottom: 2px solid #00C853;
+		padding: 0.2em;
+		text-align: center;
+		margin-bottom: 2em; }
+	section#input canvas {
+		text-align: center; }
+
+section#logo {
+	display: flex;
+	justify-content: center;
+	align-items: center; }
+	section#logo svg, section#logo img {
+		width: 90px;
+		height: 90px;
+		fill: none;
+		stroke-width: 1.745px;
+		stroke: #00C853;
+		margin-right: 0.66em; }
+	section#logo h1 {
+		font-size: 200%;
+		font-weight: 300; }
+
+section#footer {
+	font-size: 80%;
+	border-bottom: none;
+	padding-bottom: 5em; }
+
+#example_big canvas {
+	margin: 0.8em; }
+
+#example_medium canvas {
+	margin: 0.6em; }
+
+#example_small canvas {
+	margin: 0.3em; }
+
+@media (max-width: 1200px) {
+	html {
+		font-size: 120%; } }
+
+@media (max-width: 900px) {
+	html {
+		font-size: 110%; }
+		html body {
+			margin: 1em 2em; }
+		html section#logo svg {
+			width: 70px;
+			height: 70px; }
+		html #example_big canvas {
+			margin: 0.8em; }
+		html #example_medium canvas {
+			margin: 0.4em; }
+		html #example_small canvas {
+			margin: 0.3em; } }
+
+@media (max-width: 600px) {
+	html {
+		font-size: 80%; }
+		html body {
+			margin: 0.5em 1em; }
+		html section#logo svg {
+			width: 60px;
+			height: 60px; }
+		html #example_big canvas {
+			margin: 0.5em; }
+		html #example_medium canvas {
+			margin: 0.3em; }
+		html #example_small canvas {
+			margin: 0.2em; } }
