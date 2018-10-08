@@ -57,7 +57,7 @@ function renderer(hash, params) {
 		ctx.fill();
 
 		// draw figure ( whats when opacity of data > 0 )
-		if( figures[figure][i] > 2 ){		// TODO:  two ? not 0?
+		if( figures[figure][i] > 0 ){
 			const alpha = figures[figure][i] * figurealpha / 10;
 			ctx.fillStyle = `hsla(${shift+variation}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
 			ctx.fill();
