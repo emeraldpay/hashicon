@@ -7,7 +7,7 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
 	<link href="style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	<script src="../dist/identicon.umd.js"></script>
+	<script src="../dist/hashicon.umd.js"></script>
 </head>
 <body>
 
@@ -24,8 +24,8 @@
 
 	<!--Intro-->
 	<section>
-		<p>HashIcon generates a visual representation of a hash value. Adding visual identifiers will make the user experience much more enjoyable. HashIcon is made with love for Ethereum Classic - but simple to use for any kind of hashes. Its visualy customizable to fit your project's style.</p>
-		<p>Get the latest version from <a href="http://github.com/ETCDEVTeam/hashicons">Github</a>.</p></p>
+		<p>HashIcon generates a visual representation of a hash value. Adding visual identifiers will make the user experience much more enjoyable. HashIcon is made with love for Ethereum Classic - but simple to use for any kind of hashes. Its visualy highly customizable to fit your project's style.</p>
+		<p>Get the latest version from <a href="http://github.com/ETCDEVTeam/hashicon">Github</a>. </p></p>
 	</section>
 
 	<!--example input field + single canvas hashicon-->
@@ -69,7 +69,7 @@
     function generateCanvas(parentId, length, size) {
     	const parent = document.getElementById(parentId);
       Array.from({length}).forEach(() => {
-      	parent.append(identicon(randomHash(), size));
+      	parent.append(hashicon(randomHash(), size));
       });
     }
 
@@ -85,7 +85,7 @@
     const hashInput = document.getElementById('hashInput');
     hashInput.addEventListener('input', (event) => {
     	if (canvasContainer.firstChild) canvasContainer.firstChild.remove();
-    	canvasContainer.appendChild(identicon(event.target.value, 240));
+    	canvasContainer.appendChild(hashicon(event.target.value, 240));
     });
     hashInput.dispatchEvent(new Event("input"));	// trigger on load
 

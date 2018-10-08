@@ -1,17 +1,17 @@
 <!doctype html>
 <html>
 <head>
-  <title>Identicon Dev</title>
+  <title>Hashicon Dev</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src=" identicon.umd.js"></script>
+  <script src=" hashicon.umd.js"></script>
   <style>
   	body { background: #222; color: #fff;}
   	canvas { padding: 1em; }
 	</style>
 </head>
 <body>
-	<h1>Identicon Dev</h1>
+	<h1>Hashicon Dev</h1>
 
 
 	<section id="fixed">
@@ -20,9 +20,9 @@
 
 	<hr />
 
-	<!--example input field + single canvas identicon-->
+	<!--example input field + single canvas hashicon-->
 	<section id="input">
-		<h1>paste a hash to see your identicon</h1>
+		<h1>paste a hash to see your hashicon</h1>
 		<div><input type="text" id="hashInput" value="0xdc53525847b67a9e32d80066202d5744c86ae500"></div>
 		<div id="canvasContainer"></div>
 	</section>
@@ -39,28 +39,28 @@
 		const fixed = document.getElementById("fixed");
 
 		// "ugly" ones
-		fixed.append(identicon("0xa5151a7b6a9e32d89066202da744c860e500a202", 60));
-		fixed.append(identicon("0x7b6a9e32d2ca25151a8da744c860e500a9066202", 60));
+		fixed.append(hashicon("0xa5151a7b6a9e32d89066202da744c860e500a202", 60));
+		fixed.append(hashicon("0x7b6a9e32d2ca25151a8da744c860e500a9066202", 60));
 
 
 
 		// "Fixed" samples
-		const icon = identicon("0x2ca25151a7b6a9e32d89066202da744c860e500a", 40);
+		const icon = hashicon("0x2ca25151a7b6a9e32d89066202da744c860e500a", 40);
 		fixed.append(icon);
 
-		fixed.append(identicon("0x7ba9e32d2ca25151a8da7a44c860e500a9066202", 60));
+		fixed.append(hashicon("0x7ba9e32d2ca25151a8da7a44c860e500a9066202", 60));
 		let params = { size: 60 };
-		fixed.append(identicon("0x00b6a9e32d2ca251a8da744c860e500a9066202f", params));
-		fixed.append(identicon("0x6a9e32d2ca25151a8da744c860e500a9066202fa", params));
+		fixed.append(hashicon("0x00b6a9e32d2ca251a8da744c860e500a9066202f", params));
+		fixed.append(hashicon("0x6a9e32d2ca25151a8da744c860e500a9066202fa", params));
 
 		// No params, all defaults
-		fixed.append(identicon("0xca25151a7b6a9e32d89066202da744c860e500a2"));
-		fixed.append(identicon("0xa2151a7b6a9e32d89066202da744c860e500a20a"));
+		fixed.append(hashicon("0xca25151a7b6a9e32d89066202da744c860e500a2"));
+		fixed.append(hashicon("0xa2151a7b6a9e32d89066202da744c860e500a20a"));
 
 		// with a bunch of params
 		params = { size: 120, shift: { min: 160, max: 200 }, saturation: { min: 40 } };
-		fixed.append(identicon("0xa25151a7b6a9e32d89066202da744c860e500a20", params));
-		fixed.append(identicon("0xa5151a7b6a9e32d89066202da744c860e500a202", params));
+		fixed.append(hashicon("0xa25151a7b6a9e32d89066202da744c860e500a20", params));
+		fixed.append(hashicon("0xa5151a7b6a9e32d89066202da744c860e500a202", params));
 
 
 
@@ -72,14 +72,14 @@
 			shift: { min: 175, max: 185 },
 			light: { enabled: false }
 		};
-		fixed.append(identicon("0x5107b609e32d89066202da744c860e500a202a51", flat));
-		fixed.append(identicon("0x020e101a701a9032089066202d0744c860e500a2", flat));
+		fixed.append(hashicon("0x5107b609e32d89066202da744c860e500a202a51", flat));
+		fixed.append(hashicon("0x020e101a701a9032089066202d0744c860e500a2", flat));
 
 
 		// "other" hashes
-		fixed.append(identicon("1234567890123456789012345678901234567890", 50));
-		fixed.append(identicon("12345678901234567890", 50));
-		fixed.append(identicon("123456789012345678901234", 50));
+		fixed.append(hashicon("1234567890123456789012345678901234567890", 50));
+		fixed.append(hashicon("12345678901234567890", 50));
+		fixed.append(hashicon("123456789012345678901234", 50));
 	</script>
 
 
@@ -103,7 +103,7 @@
     function generateCanvas(parentId, length, size) {
     	const parent = document.getElementById(parentId);
       Array.from({length}).forEach(() => {
-      	parent.append(identicon(randomHash(), size));
+      	parent.append(hashicon(randomHash(), size));
       });
     }
 
@@ -119,7 +119,7 @@
     const hashInput = document.getElementById('hashInput');
     hashInput.addEventListener('input', (event) => {
     	if (canvasContainer.firstChild) canvasContainer.firstChild.remove();
-    	canvasContainer.appendChild(identicon(event.target.value, 100));
+    	canvasContainer.appendChild(hashicon(event.target.value, 100));
     });
     hashInput.dispatchEvent(new Event("input"));	// trigger on load
 

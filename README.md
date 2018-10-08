@@ -1,17 +1,18 @@
-[![GitHub release](https://img.shields.io/github/release/ETCDEVTeam/identicon.svg)](https://github.com/ETCDEVTeam/identicon/releases)
-[![npm](http://img.shields.io/npm/v/identicon.svg)](https://www.npmjs.com/package/identicon)
-[![License](https://img.shields.io/npm/l/identicon.svg)](LICENSE)
+[![GitHub release](https://img.shields.io/github/release/ETCDEVTeam/hashicon.svg)](https://github.com/ETCDEVTeam/hashicon/releases)
+[![npm](http://img.shields.io/npm/v/hashicon.svg)](https://www.npmjs.com/package/hashicon)
+[![License](https://img.shields.io/npm/l/hashicon.svg)](LICENSE)
 
 
 
 Hashicon
-========
+==========
 
 Generates a beautiful representation of any hash.
 
-[Example page](https://oori.github.io/identicons-temp/examples/)
+[Example page](https://oori.github.io/hashicons-temp/examples/)
 
-![Sample identicon image](examples/hashicon.png "HashIcon")
+![Sample hashicon image](examples/hashicons.png "Hashicons")
+
 
 
 Browser
@@ -19,15 +20,15 @@ Browser
 
 ```javascript
 <script src="https://www.jsdelivr.com/?docs=gh"></script>
-<script src="http://unpkg.com/identicon"></script>
+<script src="http://unpkg.com/hashicon"></script>
 
 const hash = "...";
-document.body.appendChild( identicon(hash) ); // icon is a canvas element
-document.body.appendChild( identicon(hash), 80 ); // 80px (with HiDPI/retina adjustments)
+document.body.appendChild( hashicon(hash) ); // icon is a canvas element
+document.body.appendChild( hashicon(hash), 80 ); // 80px (with HiDPI/retina adjustments)
 
 // or with custom configuration
 const params = {...};
-const icon = identicon(hash, params);
+const icon = hashicon(hash, params);
 document.body.appendChild(icon); // icon is a canvas element
 ```
 
@@ -42,7 +43,7 @@ TODO
 
 Node
 ---
-TODO   (see identicons.esm)
+TODO   (see hashicons.esm)
 
 
 Development

@@ -2,7 +2,7 @@ import renderer from './renderer.js';
 import params from './params';
 import { deepMerge } from './utils';
 
-export default function identicon(hash, override_params = {}) {
+export default function hashicon(hash, override_params = {}) {
 	// TODO: validate hash format
 
 	// overload "override_params": allow to call with only size value (numeric)

@@ -97,7 +97,7 @@ const createCanvas = size => {
 	canvas.style.height = size + "px";
 
 	// Hi-DPI / Retina
-	var dpr = 4; //window.devicePixelRatio || 1;
+	var dpr = window.devicePixelRatio || 1;
 	canvas.width = size * dpr;
 	canvas.height = size * dpr;
 
@@ -162,7 +162,7 @@ function renderer(hash, params) {
 		// draw figure ( whats when opacity of data > 0 )
 		if( figures[figure][i] > 0 ){
 			const alpha = figures[figure][i] * figurealpha / 10;
-			ctx.fillStyle = `hsla(${shift+variation}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
+			ctx.fillStyle = `hsla(${shift+variation+shift}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
 			ctx.fill();
 		}
 	});
@@ -174,12 +174,12 @@ var params = {
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
 	variation: { min: 2, max: 6, enabled: true },
-	shift: { min: 240, max: 540 },
+	shift: { min: 150, max: 210 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true}
 };
 
-function identicon(hash, override_params = {}) {
+function hashicon(hash, override_params = {}) {
 	// TODO: validate hash format
 
 	// overload "override_params": allow to call with only size value (numeric)
@@ -189,4 +189,4 @@ function identicon(hash, override_params = {}) {
 	return renderer(hash, _params);
 }
 
-module.exports = identicon;
+module.exports = hashicon;
