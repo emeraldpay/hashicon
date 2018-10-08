@@ -28,7 +28,7 @@ export default [
 			!production && serve({
 				open: true,
 				contentBase: ".",
-				openPage: `/${buildDir}/index.htm`,
+				openPage: `/${buildDir}/index.html`,
 				host: "localhost",
 				port: 3000
 			}),
