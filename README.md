@@ -3,9 +3,8 @@
 [![License](https://img.shields.io/npm/l/hashicon.svg)](LICENSE)
 
 
-
 Hashicon
-==========
+========
 
 Generates a beautiful representation of any hash.
 
@@ -48,16 +47,32 @@ Params
 See [default params](src/params.js)
 
 ```
-	TODO: description
+	HashIcons are generated from a hash number using the modulo operator to extract bits of information as needed. With this params you can controll the possible visual output. Colors are calculated in hsla ( Hue, Saturation, Lightness, Alpha ).
 
+	// primary color range radius ( 0=red, 60=yellow, 120=green, ... 360=red )
 	hue: { min: 0, max: 360 },
+
+	// saturation ( 0=grey, 100=colorfull )
 	saturation: { min: 70, max: 100 },
+
+	// lightness ( 50=optimal, <50=darker, >50=lighter, 0=extremlydark, 100=extremlybright )
 	lightness: { min: 45, max: 65 },
-	variation: { min: 2, max: 6, enabled: true },
+
+	// hue variation for each triangle
+	variation: { min: -12, max: 12, enabled: true },
+
+	// color shift from primary hue to secondary hue ( the pattern )
 	shift: { min: 150, max: 210 },
-	figurealpha: { min: .7, max: 1.2 },
+
+	// the pattern opacity
+	figurealpha: { min: .7, max: 1.2 }, // alpha
+
+	// simulate a 3d cube by different areas gets some more/less light applyed 
 	light:{ top:10, right:-8, left:-4, enabled: true}
+
 ```
+
+
 
 
 Node

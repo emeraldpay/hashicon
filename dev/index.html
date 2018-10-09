@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src=" hashicon.umd.js"></script>
   <style>
-  	body { background: #222; color: #fff;}
+  	body { background:#222 ; color:#F7F9F8; margin: 2em 3em; font-family: sans-serif; }
   	canvas { padding: 1em; }
+  	section { padding-top: 1em; }
+  	hr{ opacity: 0.1; }
 	</style>
 </head>
 <body>
-	<h1>Hashicon Dev</h1>
-
+	<h1>HashIcon Dev</h1>
 
 	<section id="fixed">
 		<h1>Fixed samples</h1>
@@ -42,8 +43,6 @@
 		fixed.append(hashicon("0xa5151a7b6a9e32d89066202da744c860e500a202", 60));
 		fixed.append(hashicon("0x7b6a9e32d2ca25151a8da744c860e500a9066202", 60));
 
-
-
 		// "Fixed" samples
 		const icon = hashicon("0x2ca25151a7b6a9e32d89066202da744c860e500a", 40);
 		fixed.append(icon);
@@ -63,14 +62,15 @@
 		fixed.append(hashicon("0xa5151a7b6a9e32d89066202da744c860e500a202", params));
 
 
-
 		// flat-style
 		const flat = {
 			size: 150,
-			lightness: { min: 25, max: 45 },
-			saturation: { min: 25, max: 50 },
+			lightness: { min: 45, max: 55 },
+			saturation: { min: 75, max: 90 },
 			shift: { min: 175, max: 185 },
-			light: { enabled: false }
+			light: { enabled: false },
+			figurealpha: { min: .7, max: 1.0  },
+			variation: { min: 2, max: 50, enabled: true }
 		};
 		fixed.append(hashicon("0x5107b609e32d89066202da744c860e500a202a51", flat));
 		fixed.append(hashicon("0x020e101a701a9032089066202d0744c860e500a2", flat));
@@ -78,7 +78,7 @@
 
 		// "other" hashes
 		fixed.append(hashicon("1234567890123456789012345678901234567890", 50));
-		fixed.append(hashicon("12345678901234567890", 50));
+		fixed.append(hashicon("F9ADe45937C0AB18D", 50));
 		fixed.append(hashicon("123456789012345678901234", 50));
 	</script>
 
