@@ -11,7 +11,7 @@ Generates a beautiful representation of any hash.
 [Example page](https://ETCDEVTeam.github.io/hashicon/examples/)   
 More examples here: [source](examples/index.html)
 
-![Sample hashicon image](examples/hashicons.png "Hashicons")
+![Sample hashicon image](examples/hashicon.png "Hashicon")
 
 
 
