@@ -44,24 +44,26 @@ Saving to PNG:  ```right-click "Save Image As..."```
 
 Params
 ---
-See [default params](src/params.js)
 
-```javascript
 HashIcons are generated from a hash number using the 
 modulo operator to extract bits of information as needed. 
-With this params you can controll the possible visual output. 
-Colors are calculated in hsla ( Hue, Saturation, Lightness, Alpha ).
+With this params you can manipulate the possible visual output.
 
-// primary color range radius ( 0=red, 60=yellow, 120=green, ... 360=red )
+
+See [default params](src/params.js)
+
+
+```javascript
+// primary color range radius ( 0=red, 60=yellow, 120=green, ..., 360=red )
 hue: { min: 0, max: 360 },
 
 // saturation ( 0=grey, 100=colorfull )
 saturation: { min: 70, max: 100 },
 
-// lightness ( 50=optimal, <50=darker, >50=lighter, 0=extremlydark, 100=extremlybright )
+// lightness ( 0=extremlydark, 50=optimal, 100=extremlybright )
 lightness: { min: 45, max: 65 },
 
-// hue variation for each triangle
+// hue variation for individual triangles
 variation: { min: -12, max: 12, enabled: true },
 
 // color shift from primary hue to secondary hue ( the pattern )
