@@ -54,7 +54,7 @@
   "bugs": {
     "url": "https://github.com/ETCDEVTeam/hashicon/issues"
   },
-  "homepage": "https://ETCDEVTeam.github.io/hashicon",
+  "homepage": "https://ETCDEVTeam.github.io/hashicon/examples/",
   "engines": {
     "node": ">=8"
   }
