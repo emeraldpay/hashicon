@@ -12,7 +12,7 @@ Generates a beautiful representation of any hash.
 [Example page](https://ETCDEVTeam.github.io/hashicons/examples/)   
 More examples here: [source](examples/index.html)
 
-![Sample hashicon image](xexamples/hashicons.png "Hashicons")
+![Sample hashicon image](examples/hashicons.png "Hashicons")
 
 
 
