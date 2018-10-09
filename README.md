@@ -46,7 +46,7 @@ Params
 ---
 See [default params](src/params.js)
 
-```
+```javascript
 HashIcons are generated from a hash number using the 
 modulo operator to extract bits of information as needed. 
 With this params you can controll the possible visual output. 
