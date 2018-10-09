@@ -172,7 +172,7 @@ var params = {
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
 	variation: { min: 2, max: 6, enabled: true },
-	shift: { min: 85, max: 180 },
+	shift: { min: 150, max: 210 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true}
 };
