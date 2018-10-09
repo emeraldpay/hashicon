@@ -9,20 +9,27 @@ Hashicon
 
 Generates a beautiful representation of any hash.
 
-[Example page](https://oori.github.io/hashicons-temp/examples/)
+[Example page](https://ETCDEVTeam.github.io/hashicons/examples/)   
+More examples here: [source](examples/index.html)
 
-![Sample hashicon image](examples/hashicons.png "Hashicons")
+![Sample hashicon image](xexamples/hashicons.png "Hashicons")
 
 
 
 Browser
 ---
 
-```javascript
-<script src="https://www.jsdelivr.com/?docs=gh"></script>
-<script src="http://unpkg.com/hashicon"></script>
+Install with: 
+```npm install hashicon```   
+-or-   
+CDN: ```<script src="//unpkg.com/hashicon"></script>```   
+-or-   
+Download the [current build](dist/hashicon.umd.js)   
 
-const hash = "...";
+```javascript
+
+
+const hash = "0xdc53525847b67a9e32d80066202d5744c86ae500";
 document.body.appendChild( hashicon(hash) ); // icon is a canvas element
 document.body.appendChild( hashicon(hash), 80 ); // 80px (with HiDPI/retina adjustments)
 
@@ -38,23 +45,42 @@ Saving to PNG:  ```right-click "Save Image As..."```
 
 Params
 ---
-TODO
+See [default params](src/params.js)
+
+```
+	TODO: description
+
+	hue: { min: 0, max: 360 },
+	saturation: { min: 70, max: 100 },
+	lightness: { min: 45, max: 65 },
+	variation: { min: 2, max: 6, enabled: true },
+	shift: { min: 150, max: 210 },
+	figurealpha: { min: .7, max: 1.2 },
+	light:{ top:10, right:-8, left:-4, enabled: true}
+```
 
 
 Node
 ---
-TODO   (see hashicons.esm)
+```TODO: node-canvas example```   
+Install with: ```npm install hashicon```   
+See ESM+CJS builds [here](dist)
 
 
 Development
 -----------
-```1. npm install```
+```1. npm install```   
 ```2. npm run dev```
+```3. http://localhost:3000```
 
-
+Changes are built in "dev" folder with sourcemaps and are live-reloaded.
 
 Build
 -----
+```npm run build``` into "dist" folder
 
-    ```npm run build```
+License
+-----
+See [LICENSE](LICENSE)
+
 
