@@ -64,16 +64,33 @@ Params
 ---
 > See [default params](src/params.js)
 
+HashIcons are generated from a hash number using the 
+modulo operator to extract bits of information as needed. 
+With this params you can manipulate the possible visual output.
+
 ```js
 // TODO: add descriptions
 {
-	hue: { min: 0, max: 360 },
-	saturation: { min: 70, max: 100 },
-	lightness: { min: 45, max: 65 },
-	variation: { min: 2, max: 6, enabled: true },
-	shift: { min: 150, max: 210 },
-	figurealpha: { min: .7, max: 1.2 },
-	light:{ top:10, right:-8, left:-4, enabled: true}
+// primary color range radius ( 0=red, 60=yellow, 120=green, ..., 360=red )
+hue: { min: 0, max: 360 },
+
+// saturation ( 0=grey, 100=colorfull )
+saturation: { min: 70, max: 100 },
+
+// lightness ( 0=extremlydark, 50=optimal, 100=extremlybright )
+lightness: { min: 45, max: 65 },
+
+// hue variation for individual triangles
+variation: { min: -12, max: 12, enabled: true },
+
+// color shift from primary hue to secondary hue ( the pattern )
+shift: { min: 150, max: 210 },
+
+// the pattern opacity
+figurealpha: { min: .7, max: 1.2 }, // alpha
+
+// simulate a 3d cube by different areas gets some more/less light applyed 
+light:{ top:10, right:-8, left:-4, enabled: true}
 }
 ```
 
