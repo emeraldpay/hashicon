@@ -69,7 +69,6 @@ modulo operator to extract bits of information as needed.
 With this params you can manipulate the possible visual output.
 
 ```js
-// TODO: add descriptions
 {
 // primary color range radius ( 0=red, 60=yellow, 120=green, ..., 360=red )
 hue: { min: 0, max: 360 },
