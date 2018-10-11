@@ -1,4 +1,4 @@
-[![GitHub release](https://img.shields.io/github/release/ETCDEVTeam/hashicon.svg)](https://github.com/ETCDEVTeam/hashicon/releases)
+[![GitHub tag](https://img.shields.io/github/tag/ETCDEVTeam/hashicon.svg)](https://GitHub.com/ETCDEVTeam/hashicon/tags/)
 [![npm](http://img.shields.io/npm/v/hashicon.svg)](https://www.npmjs.com/package/hashicon)
 [![License](https://img.shields.io/npm/l/hashicon.svg)](LICENSE)
 
