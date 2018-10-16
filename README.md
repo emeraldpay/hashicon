@@ -3,9 +3,8 @@
 [![License](https://img.shields.io/npm/l/hashicon.svg)](LICENSE)
 
 
-
 Hashicon
-==========
+========
 
 > Generates a beautiful representation of any hash.
 
@@ -13,7 +12,7 @@ Check out the [demo website](https://ETCDEVTeam.github.io/hashicon/examples/) to
 
 Further examples [here](examples/index.html).
 
-![Sample hashicon image](examples/hashicons.png "Hashicons")
+![Sample hashicon image](examples/hashicon.png "Hashicon")
 
 
 
@@ -62,14 +61,6 @@ document.body.appendChild(icon);
 
 Params
 ---
-> See [default params](src/params.js)
-
-HashIcon's values are extracted from the hash, and controlled with the following parameters to manipulate the possible visual output:
-
-```js
-{
-// size px (HiDPI/Retina aware)
-size: 100,
 
 // primary color range radius ( 0=red, 60=yellow, 120=green, ..., 360=red )
 hue: { min: 0, max: 360 },

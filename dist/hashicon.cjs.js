@@ -141,10 +141,13 @@ function renderer(hash, params) {
 
 	sprite.forEach((line, i) => {
 		const light = params.light.enabled ? params.light[line.light] : 1;
-
+		
 		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
-		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
-
+		
+		// added a 1337-multiplyer cause 1-16 is not enough for higher params ... 
+		// because it will always just be max 16 - even defined to be 0-200 ... 
+		const variation = params.variation.enabled ? processParam(params.variation, x*1337) : 0;
+		
 		// Draw on canvas
 		ctx.beginPath();
 
@@ -156,16 +159,19 @@ function renderer(hash, params) {
 		}
 
 		// Fill background
-		ctx.fillStyle = `hsla(${hue+variation}, ${saturation}%, ${lightness+variation+light}%, 1)`;
+		ctx.fillStyle = `hsla(${hue+variation}, ${saturation}%, ${lightness+light}%, 1)`;
 		ctx.fill();
 
 		// draw figure ( whats when opacity of data > 0 )
 		if( figures[figure][i] > 0 ){
 			const alpha = figures[figure][i] * figurealpha / 10;
-			ctx.fillStyle = `hsla(${shift+variation+shift}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
+
+			// variation just in HUE - no longer in hue AND light .
+			ctx.fillStyle = `hsla(${hue+shift+variation}, ${saturation}%, ${lightness+light}%, ${alpha})`;
 			ctx.fill();
 		}
 	});
+
 	return canvas;
 }
 
@@ -173,8 +179,8 @@ var params = {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
-	variation: { min: 2, max: 6, enabled: true },
-	shift: { min: 150, max: 210 },
+	variation: { min: 8, max: 14, enabled: true },
+	shift: { min: 60, max: 300 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true}
 };
