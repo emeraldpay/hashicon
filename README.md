@@ -81,10 +81,10 @@ saturation: { min: 70, max: 100 },
 lightness: { min: 45, max: 65 },
 
 // hue variation for individual triangles
-variation: { min: -12, max: 12, enabled: true },
+variation: { min: 7, max: 14, enabled: true },
 
 // color shift from primary hue to secondary hue ( the pattern )
-shift: { min: 150, max: 210 },
+shift: { min: 60, max: 300 },
 
 // the pattern opacity
 figurealpha: { min: .7, max: 1.2 }, // alpha
