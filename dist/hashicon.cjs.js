@@ -179,8 +179,8 @@ var params = {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
-	variation: { min: -12, max: 12, enabled: true },
-	shift: { min: 150, max: 210 },
+	variation: { min: 8, max: 14, enabled: true },
+	shift: { min: 60, max: 300 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true}
 };
