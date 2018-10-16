@@ -22,7 +22,9 @@ export default [
 		},
 		plugins: [
 			resolve(), // so Rollup can find `dependencies`
-			commonjs(), // so Rollup can convert `ms` to an ES module
+			commonjs({ 
+				namedExports: { 'js-sha3': [ 'keccak256' ]}
+				}), // so Rollup can convert `ms` to an ES module
 			// babel({ exclude: ['node_modules/**'] }),
 			production && terser(), // minify, but only in production
 			!production && serve({

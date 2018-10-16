@@ -39,12 +39,8 @@ function renderer(hash, params) {
 	sprite.forEach((line, i) => {
 		const light = params.light.enabled ? params.light[line.light] : 1;
 
-		// changed from substr(i,1) to i,2 cause variation could 
-		// not go big enough because 0-16 was max... on this
-		// but maybe some want variation of > 16 ...
 		const x = parseInt(hash.split("x").pop().substr(i,2), 16);	// TODO processParam
 		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
-
 
 		// Draw on canvas
 		ctx.beginPath();
