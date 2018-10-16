@@ -142,8 +142,12 @@ function renderer(hash, params) {
 	sprite.forEach((line, i) => {
 		const light = params.light.enabled ? params.light[line.light] : 1;
 
-		const x = parseInt(hash.split("x").pop().substr(i,1), 16);	// TODO processParam
+		// changed from substr(i,1) to i,2 cause variation could 
+		// not go big enough because 0-16 was max... on this
+		// but maybe some want variation of > 16 ...
+		const x = parseInt(hash.split("x").pop().substr(i,2), 16);	// TODO processParam
 		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
+
 
 		// Draw on canvas
 		ctx.beginPath();
@@ -156,13 +160,13 @@ function renderer(hash, params) {
 		}
 
 		// Fill background
-		ctx.fillStyle = `hsla(${hue+variation}, ${saturation}%, ${lightness+variation+light}%, 1)`;
+		ctx.fillStyle = `hsla(${hue+variation}, ${saturation}%, ${lightness+light}%, 1)`;
 		ctx.fill();
 
 		// draw figure ( whats when opacity of data > 0 )
 		if( figures[figure][i] > 0 ){
 			const alpha = figures[figure][i] * figurealpha / 10;
-			ctx.fillStyle = `hsla(${shift+variation+shift}, ${saturation}%, ${lightness+variation+light}%, ${alpha})`;
+			ctx.fillStyle = `hsla(${hue+shift+variation}, ${saturation}%, ${lightness+light}%, ${alpha})`;
 			ctx.fill();
 		}
 	});
@@ -173,8 +177,8 @@ var params = {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },
-	variation: { min: 2, max: 6, enabled: true },
-	shift: { min: 150, max: 210 },
+	variation: { min: 10, max: 30, enabled: true },
+	shift: { min: 60, max: 300 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true}
 };
