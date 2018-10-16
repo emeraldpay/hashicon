@@ -17,34 +17,31 @@ function processParam(param, value) {
 
 /**
  * Canvas renderer
- * @param  {String} hash   Hex string seed value
+ * @param  {Uint16Array}	hashValues Integers
  * @param  {Object} params Rendering parameters
  * @return {Object}        Canvas HTML object
  */
-function renderer(hash, params) {
-	const chunks = chunkHash(hash, 6);	// Parse hash and calculate param values
-	const hue = processParam(params.hue, chunks[0]);
-	const saturation = processParam(params.saturation, chunks[1]);
-	const lightness = processParam(params.lightness, chunks[2]);
-	const shift = processParam(params.shift, chunks[3]);
-	const figurealpha = processParam(params.figurealpha, chunks[5]);
-	const figure = chunks[4] % figures.length;
+function renderer(hashValues, params) {
 
+	const hue = processParam(params.hue, hashValues[0]);
+	const saturation = processParam(params.saturation, hashValues[1]);
+	const lightness = processParam(params.lightness, hashValues[2]);
+	const shift = processParam(params.shift, hashValues[3]);
+	const figurealpha = processParam(params.figurealpha, hashValues[4]);
+	const figure = hashValues[5] % figures.length;
 
 	// Draw on canvas
 	const size = params.size || 100;
 	const canvas = createCanvas(size);
 	const ctx = canvas.getContext('2d');
 
+
 	sprite.forEach((line, i) => {
 		const light = params.light.enabled ? params.light[line.light] : 1;
 
-		// changed from substr(i,1) to i,2 cause variation could 
-		// not go big enough because 0-16 was max... on this
-		// but maybe some want variation of > 16 ...
-		const x = parseInt(hash.split("x").pop().substr(i,2), 16);	// TODO processParam
-		const variation = params.variation.enabled ? processParam(params.variation, x) : 0;
-
+		// variations
+		const x = Math.round( hashValues[6] / (i+1) );
+		const variation = params.variation.enabled ? processParam(params.variation, x ) : 0;
 
 		// Draw on canvas
 		ctx.beginPath();
