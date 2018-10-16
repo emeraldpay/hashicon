@@ -1,6 +1,6 @@
 {
   "name": "hashicon",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "hashicon for the cryptoniacs",
   "main": "dist/hashicon.cjs.js",
   "module": "dist/hashicon.esm.js",
