@@ -59,6 +59,7 @@
     "node": ">=8"
   },
   "dependencies": {
+    "canvas": "^2.1.0",
     "js-sha3": "^0.8.0"
   }
 }

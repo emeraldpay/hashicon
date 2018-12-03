@@ -46,6 +46,7 @@ var shapes = [
 	{ x1:0, y1:0, x2:0.25, y2:0.125, x3:0, y3:0.25 }
 ];
 
+const { createCanvas } = require('canvas');
 /**
 * Performs a deep merge of objects and returns new object. Does not modify
 * objects (immutable) and merges arrays via concatenation.
@@ -77,21 +78,26 @@ const deepMerge = (...objects) => {
 };
 
 
-const createCanvas = size => {
-	const canvas = document.createElement('canvas');
+const createCanvasFun = (size, type) => {
+	if (type == 'node') {
+		const canvas = createCanvas(size, size);
+		return canvas;
+	} else if (type == 'browser') {
+		const canvas = document.createElement('canvas');
 
-	canvas.style.width = size + "px";
-	canvas.style.height = size + "px";
+		canvas.style.width = size + "px";
+		canvas.style.height = size + "px";
 
-	// Hi-DPI / Retina
-	var dpr = window.devicePixelRatio || 1;
-	canvas.width = size * dpr;
-	canvas.height = size * dpr;
+		// Hi-DPI / Retina
+		var dpr = window.devicePixelRatio || 1;
+		canvas.width = size * dpr;
+		canvas.height = size * dpr;
 
-	const ctx = canvas.getContext('2d');
-	ctx.scale(dpr, dpr);
+		const ctx = canvas.getContext('2d');
+		ctx.scale(dpr, dpr);
 
-	return canvas;
+		return canvas;
+	}
 };
 
 /**
@@ -122,7 +128,8 @@ function renderer(hashValues, params) {
 
 	// Draw on canvas
 	const size = params.size || 100;
-	const canvas = createCanvas(size);
+	const type = params.type;
+	const canvas = createCanvasFun(size, type);
 	const ctx = canvas.getContext('2d');
 
 
@@ -154,10 +161,15 @@ function renderer(hashValues, params) {
 			ctx.fill();
 		}
 	});
-	return canvas;
+	if (type == 'node') {
+		return canvas.toDataURL();
+	} else if (type == 'browser') {
+		return canvas;
+	}
 }
 
 var params = {
+	type: 'browser',
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },

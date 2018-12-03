@@ -1,4 +1,5 @@
 export default {
+	type: 'browser',
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
 	lightness: { min: 45, max: 65 },

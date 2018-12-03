@@ -1,7 +1,7 @@
 import figures from './figures';
 import sprite from './sprite';
 import shapes from './shapes';
-import { chunkHash, createCanvas } from './utils';
+import { chunkHash, createCanvasFun } from './utils';
 
 
 /**
@@ -32,7 +32,8 @@ function renderer(hashValues, params) {
 
 	// Draw on canvas
 	const size = params.size || 100;
-	const canvas = createCanvas(size);
+	const type = params.type;
+	const canvas = createCanvasFun(size, type);
 	const ctx = canvas.getContext('2d');
 
 
@@ -64,7 +65,11 @@ function renderer(hashValues, params) {
 			ctx.fill();
 		}
 	});
-	return canvas;
+	if (type == 'node') {
+		return canvas.toDataURL();
+	} else if (type == 'browser') {
+		return canvas;
+	}
 }
 
 export default renderer;

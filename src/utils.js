@@ -1,3 +1,4 @@
+const { createCanvas } = require('canvas')
 /**
 * Performs a deep merge of objects and returns new object. Does not modify
 * objects (immutable) and merges arrays via concatenation.
@@ -29,21 +30,26 @@ const deepMerge = (...objects) => {
 }
 
 
-const createCanvas = size => {
-	const canvas = document.createElement('canvas');
+const createCanvasFun = (size, type) => {
+	if (type == 'node') {
+		const canvas = createCanvas(size, size);
+		return canvas;
+	} else if (type == 'browser') {
+		const canvas = document.createElement('canvas');
 
-	canvas.style.width = size + "px";
-	canvas.style.height = size + "px";
+		canvas.style.width = size + "px";
+		canvas.style.height = size + "px";
 
-	// Hi-DPI / Retina
-	var dpr = window.devicePixelRatio || 1;
-	canvas.width = size * dpr;
-	canvas.height = size * dpr;
+		// Hi-DPI / Retina
+		var dpr = window.devicePixelRatio || 1;
+		canvas.width = size * dpr;
+		canvas.height = size * dpr;
 
-	const ctx = canvas.getContext('2d');
-	ctx.scale(dpr, dpr);
+		const ctx = canvas.getContext('2d');
+		ctx.scale(dpr, dpr);
 
-	return canvas;
+		return canvas;
+	}
 }
 
-export { deepMerge, chunkHash, createCanvas }
+export { deepMerge, chunkHash, createCanvasFun }
