@@ -1,7 +1,7 @@
 import figures from './figures';
 import sprite from './sprite';
 import shapes from './shapes';
-import { chunkHash, createCanvas } from './utils';
+import { initCanvas } from './utils';
 
 
 /**
@@ -32,7 +32,7 @@ function renderer(hashValues, params) {
 
 	// Draw on canvas
 	const size = params.size || 100;
-	const canvas = createCanvas(size);
+	const canvas = initCanvas(size, params.createCanvas());
 	const ctx = canvas.getContext('2d');
 
 
