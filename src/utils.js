@@ -29,8 +29,7 @@ const deepMerge = (...objects) => {
 }
 
 
-const createCanvas = size => {
-	const canvas = document.createElement('canvas');
+const initCanvas = (size, canvas) => {
 
 	canvas.style.width = size + "px";
 	canvas.style.height = size + "px";
@@ -46,4 +45,4 @@ const createCanvas = size => {
 	return canvas;
 }
 
-export { deepMerge, chunkHash, createCanvas }
+export { deepMerge, initCanvas }
