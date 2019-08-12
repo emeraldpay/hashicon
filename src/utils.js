@@ -29,15 +29,17 @@ const deepMerge = (...objects) => {
 }
 
 
-const initCanvas = (size, canvas) => {
+const createCanvas = (width, height) => {
 
-	canvas.style.width = size + "px";
-	canvas.style.height = size + "px";
+	const canvas = document.createElement('canvas');
+
+	canvas.style.width = width + "px";
+	canvas.style.height = height + "px";
 
 	// Hi-DPI / Retina
 	var dpr = window.devicePixelRatio || 1;
-	canvas.width = size * dpr;
-	canvas.height = size * dpr;
+	canvas.width = width * dpr;
+	canvas.height = height * dpr;
 
 	const ctx = canvas.getContext('2d');
 	ctx.scale(dpr, dpr);
@@ -45,4 +47,4 @@ const initCanvas = (size, canvas) => {
 	return canvas;
 }
 
-export { deepMerge, initCanvas }
+export { deepMerge, createCanvas }
