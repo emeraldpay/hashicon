@@ -68,6 +68,7 @@ HashIcon's values are extracted from the hash, and controlled with the following
 
 ```js
 {
+
 // size px (HiDPI/Retina aware)
 size: 100,
 
@@ -90,23 +91,30 @@ shift: { min: 60, max: 300 },
 figurealpha: { min: .7, max: 1.2 }, // alpha
 
 // simulate a 3d cube by different areas gets some more/less light applyed 
-light:{ top:10, right:-8, left:-4, enabled: true}
+light:{ top:10, right:-8, left:-4, enabled: true},
+
+// Allows a custom canvas to be used to render into
+createCanvas: (width, height) => HTMLCanvasElement
+
 }
 ```
 
 Node
 ---
-
-> TODO: node-canvas example
-
 Install with: 
-
 ```shell
-$ npm install hashicon
-```   
+$ npm install hashicon canvas
+```
+Run with:
+```js
+import hashicon from 'hashicon'
+import { createCanvas } from 'canvas'
+const icon = hashicon('0xdc53525847b67a9e32d80066202d5744c86ae500', { createCanvas })
+const url = icon.toDataURL()
+console.log(url)
+```
 
 See ESM+CJS builds [here](dist).
-
 
 Development
 -----------

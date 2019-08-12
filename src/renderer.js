@@ -1,7 +1,6 @@
 import figures from './figures';
 import sprite from './sprite';
 import shapes from './shapes';
-import { initCanvas } from './utils';
 
 
 /**
@@ -29,10 +28,11 @@ function renderer(hashValues, params) {
 	const shift = processParam(params.shift, hashValues[3]);
 	const figurealpha = processParam(params.figurealpha, hashValues[4]);
 	const figure = hashValues[5] % figures.length;
+	const createCanvas = params.createCanvas;
 
 	// Draw on canvas
 	const size = params.size || 100;
-	const canvas = initCanvas(size, params.createCanvas());
+	const canvas = createCanvas(size, size);
 	const ctx = canvas.getContext('2d');
 
 

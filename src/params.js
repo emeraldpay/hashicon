@@ -1,3 +1,6 @@
+
+import { createCanvas } from './utils';
+
 export default {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
@@ -6,5 +9,5 @@ export default {
 	shift: { min: 60, max: 300 },
 	figurealpha: { min: .7, max: 1.2 },
 	light:{ top:10, right:-8, left:-4, enabled: true},
-	createCanvas: () => document.createElement('canvas'),
+	createCanvas,
 };
