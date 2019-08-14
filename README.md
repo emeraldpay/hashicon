@@ -101,7 +101,17 @@ createCanvas: (width, height) => HTMLCanvasElement
 
 Node
 ---
-Install with: 
+
+See `examples/nodejs`:
+```shell
+$ cd examples/nodejs
+$ npm install
+$ node index
+```
+This will build both PNG and HTML files into `output` directory.
+
+
+Or, manually try with: 
 ```shell
 $ npm install hashicon canvas
 ```

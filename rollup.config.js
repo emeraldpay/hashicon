@@ -8,6 +8,7 @@ import livereload from 'rollup-plugin-livereload'
 import pkg from './package.json';
 const production = (process.env.BUILD == 'production');
 const buildDir = production ? 'dist' : 'dev';
+const transformBuildDir = str => str.replace('dist', buildDir);
 
 export default [
 	// browser-friendly UMD build
@@ -15,8 +16,7 @@ export default [
 		input: 'src/main.js',
 		output: {
 			name: 'hashicon',
-			dir: buildDir,
-			file: pkg.browser,
+			file: transformBuildDir(pkg.browser),
 			// sourcemap: true,
 			format: 'umd'
 		},
@@ -42,8 +42,8 @@ export default [
 	{
 		input: 'src/main.js',
 		output: [
-			{ file: pkg.main, format: 'cjs', dir: buildDir },
-			{ file: pkg.module, format: 'es', dir: buildDir }
+			{ file: transformBuildDir(pkg.main), format: 'cjs' },
+			{ file: transformBuildDir(pkg.module), format: 'es' }
 		],
 		external: [ 'js-sha3' ]
 	}

@@ -45,54 +45,6 @@ var shapes = [
 ];
 
 /**
-* Performs a deep merge of objects and returns new object. Does not modify
-* objects (immutable) and merges arrays via concatenation.
-*
-* @param {...object} objects - Objects to merge
-* @returns {object} New object with merged key/values
-*/
-const deepMerge = (...objects) => {
-  const isObject = obj => obj && typeof obj === 'object';
-
-  return objects.reduce((prev, obj) => {
-    Object.keys(obj).forEach(key => {
-      const pVal = prev[key];
-      const oVal = obj[key];
-
-      if (Array.isArray(pVal) && Array.isArray(oVal)) {
-        prev[key] = pVal.concat(...oVal);
-      }
-      else if (isObject(pVal) && isObject(oVal)) {
-        prev[key] = deepMerge(pVal, oVal);
-      }
-      else {
-        prev[key] = oVal;
-      }
-    });
-
-    return prev;
-  }, {});
-};
-
-
-const createCanvas = size => {
-	const canvas = document.createElement('canvas');
-
-	canvas.style.width = size + "px";
-	canvas.style.height = size + "px";
-
-	// Hi-DPI / Retina
-	var dpr = window.devicePixelRatio || 1;
-	canvas.width = size * dpr;
-	canvas.height = size * dpr;
-
-	const ctx = canvas.getContext('2d');
-	ctx.scale(dpr, dpr);
-
-	return canvas;
-};
-
-/**
  * map numbers for param
  * @param  {Object} param Parameter containing min and max values
  * @param  {Number} value Number to process
@@ -117,10 +69,11 @@ function renderer(hashValues, params) {
 	const shift = processParam(params.shift, hashValues[3]);
 	const figurealpha = processParam(params.figurealpha, hashValues[4]);
 	const figure = hashValues[5] % figures.length;
+	const createCanvas = params.createCanvas;
 
 	// Draw on canvas
 	const size = params.size || 100;
-	const canvas = createCanvas(size);
+	const canvas = createCanvas(size, size);
 	const ctx = canvas.getContext('2d');
 
 
@@ -155,6 +108,55 @@ function renderer(hashValues, params) {
 	return canvas;
 }
 
+/**
+* Performs a deep merge of objects and returns new object. Does not modify
+* objects (immutable) and merges arrays via concatenation.
+*
+* @param {...object} objects - Objects to merge
+* @returns {object} New object with merged key/values
+*/
+const deepMerge = (...objects) => {
+  const isObject = obj => obj && typeof obj === 'object';
+
+  return objects.reduce((prev, obj) => {
+    Object.keys(obj).forEach(key => {
+      const pVal = prev[key];
+      const oVal = obj[key];
+
+      if (Array.isArray(pVal) && Array.isArray(oVal)) {
+        prev[key] = pVal.concat(...oVal);
+      }
+      else if (isObject(pVal) && isObject(oVal)) {
+        prev[key] = deepMerge(pVal, oVal);
+      }
+      else {
+        prev[key] = oVal;
+      }
+    });
+
+    return prev;
+  }, {});
+};
+
+
+const createCanvas = (width, height) => {
+
+	const canvas = document.createElement('canvas');
+
+	canvas.style.width = width + "px";
+	canvas.style.height = height + "px";
+
+	// Hi-DPI / Retina
+	var dpr = window.devicePixelRatio || 1;
+	canvas.width = width * dpr;
+	canvas.height = height * dpr;
+
+	const ctx = canvas.getContext('2d');
+	ctx.scale(dpr, dpr);
+
+	return canvas;
+};
+
 var params = {
 	hue: { min: 0, max: 360 },
 	saturation: { min: 70, max: 100 },
@@ -162,7 +164,8 @@ var params = {
 	variation: { min: 5, max: 20, enabled: true },
 	shift: { min: 60, max: 300 },
 	figurealpha: { min: .7, max: 1.2 },
-	light:{ top:10, right:-8, left:-4, enabled: true}
+	light:{ top:10, right:-8, left:-4, enabled: true},
+	createCanvas,
 };
 
 function hashicon(hash, override_params = {}) {
