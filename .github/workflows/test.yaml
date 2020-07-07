@@ -24,5 +24,5 @@ jobs:
       - name: Instal JS dependencies
         run: npm install
 
-      - name: Instal JS dependencies
+      - name: Build Sources
         run: npm run build
