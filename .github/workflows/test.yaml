@@ -1,0 +1,28 @@
+name: Unit Tests
+
+on:
+  # if pushed directly to the master
+  push:
+    branches:
+      - master
+  # on a pull request
+  pull_request:
+
+jobs:
+  build:
+    name: Build the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - name: Instal JS dependencies
+        run: npm install
+
+      - name: Instal JS dependencies
+        run: npm run build
