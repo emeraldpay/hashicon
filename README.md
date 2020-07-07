@@ -1,37 +1,21 @@
-[![GitHub tag](https://img.shields.io/github/tag/ETCDEVTeam/hashicon.svg)](https://GitHub.com/ETCDEVTeam/hashicon/tags/)
-[![npm](http://img.shields.io/npm/v/hashicon.svg)](https://www.npmjs.com/package/hashicon)
-[![License](https://img.shields.io/npm/l/hashicon.svg)](LICENSE)
-
-
-
 Hashicon
 ==========
 
+[![GitHub tag](https://img.shields.io/github/tag/ETCDEVTeam/hashicon.svg)](https://GitHub.com/emeraldpay/hashicon/tags/)
+[![npm](http://img.shields.io/npm/v/@emeraldpay/hashicon.svg)](https://www.npmjs.com/package/@emeraldpay/hashicon)
+[![License](https://img.shields.io/npm/l/@emeraldpay/hashicon.svg)](LICENSE)
+
 > Generates a beautiful representation of any hash.
 
-Check out the [demo website](https://ETCDEVTeam.github.io/hashicon/examples/) to try it out with your own hash and to see some examples.
-
-Further examples [here](examples/index.html).
-
 ![Sample hashicon image](examples/hashicons.png "Hashicons")
-
-
 
 Browser
 ---
 
 Install with: 
 ```shell
-$ npm install hashicon --save
+$ npm install @emeraldpay/hashicon --save
 ```   
-
-Or, include the CDN:
-
-```html
-<script src="//unpkg.com/hashicon"></script>
-```   
-
-Or, download the [current build](dist/hashicon.umd.js).
 
 
 Usage
@@ -44,6 +28,8 @@ const hash = "0xdc53525847b67a9e32d80066202d5744c86ae500";
 
 Create a `hashicon` with default params:
 ```js
+import { hashicon } from 'hashicon';
+
 const icon = hashicon(hash); // icon is a <canvas> element
 const icon = hashicon(hash, 80);  // size 80px
 ```
@@ -62,7 +48,7 @@ document.body.appendChild(icon);
 
 Params
 ---
-> See [default params](src/params.js)
+> See [default params](src/params.ts)
 
 HashIcon's values are extracted from the hash, and controlled with the following parameters to manipulate the possible visual output:
 
@@ -99,33 +85,6 @@ createCanvas: (width, height) => HTMLCanvasElement
 }
 ```
 
-Node
----
-
-See `examples/nodejs`:
-```shell
-$ cd examples/nodejs
-$ npm install
-$ node index
-```
-This will build both PNG and HTML files into `output` directory.
-
-
-Or, manually try with: 
-```shell
-$ npm install hashicon canvas
-```
-Run with:
-```js
-import hashicon from 'hashicon'
-import { createCanvas } from 'canvas'
-const icon = hashicon('0xdc53525847b67a9e32d80066202d5744c86ae500', { createCanvas })
-const url = icon.toDataURL()
-console.log(url)
-```
-
-See ESM+CJS builds [here](dist).
-
 Development
 -----------
 
@@ -136,12 +95,25 @@ $ npm install
 
 2. Start development environment:
 ```shell
-$ npm run dev
+$ npm run storybook
 ```
 
-3. Open http://localhost:3000
+A browser pointing to Storybook demo will start automatically. 
+If not opened, see console for:
 
-> Changes are built in "dev" folder with sourcemaps and are live-reloaded.
+```
+╭─────────────────────────────────────────────────────╮
+│                                                     │
+│   Storybook 5.3.19 started                          │
+│   3.62 s for manager and 3.32 s for preview         │
+│                                                     │
+│    Local:            http://localhost:60490/        │
+│    On your network:  http://192.168.0.100:60490/    │
+│                                                     │
+╰─────────────────────────────────────────────────────╯
+```
+
+And open the _local_ url (http://localhost:60490/ in the example above)
 
 Build
 -----
@@ -150,10 +122,13 @@ Build
 $ npm run build
 ```
 
-> Builds package into `dist/` folder.
+> Builds package into `lib/` folder.
 
 License
 -----
+
+Apache 2
+
 See [LICENSE](LICENSE)
 
 

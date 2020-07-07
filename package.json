@@ -1,35 +1,25 @@
 {
-  "name": "hashicon",
-  "version": "0.3.0",
-  "description": "hashicon for the cryptoniacs",
-  "main": "dist/hashicon.cjs.js",
-  "module": "dist/hashicon.esm.js",
-  "browser": "dist/hashicon.umd.js",
-  "unpkg": "dist/hashicon.umd.js",
-  "devDependencies": {
-    "rollup": "^1.19.4",
-    "rollup-plugin-commonjs": "^10.0.2",
-    "rollup-plugin-livereload": "^1.0.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-serve": "^1.0.1",
-    "rollup-plugin-terser": "^5.1.1"
-  },
+  "name": "@emeraldpay/hashicon",
+  "version": "0.4.0-dev",
+  "description": "Hashicon - a visual representation of a hash value, as a hexagon",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*.ts",
+    "lib/*.js"
+  ],
   "scripts": {
     "test": "echo \"*** TODO TESTS ***\"",
-    "clean": "rm -rf dist",
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c -w --sourcemap",
-    "prepublishOnly": "npm run clean && npm run test && npm run build"
-  },
-  "files": [
-    "dist"
-  ],
-  "directories": {
-    "example": "examples"
+    "clean": "rimraf lib",
+    "build:ts": "tsc",
+    "build": "npm run build:ts",
+    "prepublishClean": "rimraf lib/index.stories.*",
+    "prepublishOnly": "npm run clean && npm run test && npm run build && npm run prepublishClean",
+    "storybook": "start-storybook"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ETCDEVTeam/hashicon.git"
+    "url": "git+https://github.com/emeraldpay/hashicon.git"
   },
   "keywords": [
     "hash",
@@ -48,11 +38,15 @@
     {
       "name": "Oori | Pluggable",
       "url": "http://github.com/oori"
+    },
+    {
+      "name": "Igor Artamonov",
+      "url": "http://github.com/splix"
     }
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ETCDEVTeam/hashicon/issues"
+    "url": "https://github.com/emeraldpay/hashicon/issues"
   },
   "homepage": "https://ETCDEVTeam.github.io/hashicon/examples/",
   "engines": {
@@ -60,5 +54,17 @@
   },
   "dependencies": {
     "js-sha3": "^0.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.6",
+    "rimraf": "^2.6.3",
+    "jest": "24.8.0",
+    "@types/jest": "24.0.13",
+    "ts-jest": "24.0.2",
+    "jest-serial-runner": "1.1.0",
+    "@storybook/html": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.10.4",
+    "ts-loader": "^7.0.5"
   }
 }

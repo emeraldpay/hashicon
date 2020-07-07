@@ -28,8 +28,7 @@ const deepMerge = (...objects) => {
   }, {});
 }
 
-
-const createCanvas = (width, height) => {
+const createCanvas = (width: number, height: number): HTMLCanvasElement => {
 
 	const canvas = document.createElement('canvas');
 
@@ -37,7 +36,7 @@ const createCanvas = (width, height) => {
 	canvas.style.height = height + "px";
 
 	// Hi-DPI / Retina
-	var dpr = window.devicePixelRatio || 1;
+	const dpr = window.devicePixelRatio || 1;
 	canvas.width = width * dpr;
 	canvas.height = height * dpr;
 

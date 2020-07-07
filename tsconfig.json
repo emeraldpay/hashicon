@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+	"outDir": "./lib",
+	"declaration": true,
+	"lib": [
+	  "ES6",
+	  "ES2018",
+	  "DOM"
+	]
+  },
+  "include": [
+	"src/**/*.ts"
+  ],
+  "exclude": [
+	"node_modules"
+  ]
+}
