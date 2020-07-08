@@ -24,10 +24,15 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Instal JS dependencies
-        run: npm install
+        run: yarn install
 
       - name: Configure Node.js Path
         run: npm config set scripts-prepend-node-path true
 
-      - name: Publish to NPM
+      - name: Publish to NPM - hashicon
         run: npm publish --access=public
+        working-directory: packages/hashicon
+
+      - name: Publish to NPM - hashicon-react
+        run: npm publish --access=public
+        working-directory: packages/hashicon-react

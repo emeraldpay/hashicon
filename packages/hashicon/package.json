@@ -1,0 +1,68 @@
+{
+  "name": "@emeraldpay/hashicon",
+  "version": "0.4.0-dev",
+  "description": "Hashicon - a visual representation of a hash value, as a hexagon",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "files": [
+    "lib/*.ts",
+    "lib/*.js"
+  ],
+  "scripts": {
+    "test": "echo \"*** TODO TESTS ***\"",
+    "clean": "rimraf lib",
+    "build:ts": "tsc",
+    "build": "npm run build:ts",
+    "prepublishClean": "rimraf lib/index.stories.*",
+    "prepublishOnly": "npm run clean && npm run test && npm run build && npm run prepublishClean",
+    "storybook": "start-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emeraldpay/hashicon.git"
+  },
+  "keywords": [
+    "hash",
+    "icon",
+    "avatar",
+    "identicon",
+    "generate",
+    "generator",
+    "visual",
+    "canvas"
+  ],
+  "author": "Richard Schumann <schumanncombo@gmail.com> (http://schumanncombo.com)",
+  "contributors": [
+    {
+      "name": "Oori | Pluggable",
+      "url": "http://github.com/oori"
+    },
+    {
+      "name": "Igor Artamonov",
+      "url": "http://github.com/splix"
+    }
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/emeraldpay/hashicon/issues"
+  },
+  "homepage": "https://ETCDEVTeam.github.io/hashicon/examples/",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "js-sha3": "^0.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.6",
+    "rimraf": "^2.6.3",
+    "jest": "24.8.0",
+    "@types/jest": "24.0.13",
+    "ts-jest": "24.0.2",
+    "jest-serial-runner": "1.1.0",
+    "@storybook/html": "^5.3.19",
+    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.10.4",
+    "ts-loader": "^7.0.5"
+  }
+}

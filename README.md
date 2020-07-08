@@ -9,21 +9,17 @@ Hashicon
 
 ![Sample hashicon image](examples/hashicons.png "Hashicons")
 
-Browser
----
+Usage
+-----
 
 Install with: 
 ```shell
 $ npm install @emeraldpay/hashicon --save
 ```   
 
-
-Usage
----
-
-The hash value can include or omit the `0x` prefix.
+Something that you want to represent visually. For example ID of an object on the screen.
 ```js
-const hash = "0xdc53525847b67a9e32d80066202d5744c86ae500";
+const hash = "9dddff8f-be81-4c27-80c8-099327865f3f";
 ```
 
 Create a `hashicon` with default params:
@@ -45,6 +41,28 @@ Finally, append the newly created `hashicon` to the HTML document:
 document.body.appendChild(icon);
 ```
 
+React
+-----
+
+Install with: 
+```shell
+$ npm install @emeraldpay/hashicon-react --save
+```   
+
+And use the component:
+
+```js
+import { Hashicon } from 'hashicon-react';
+
+// something that you want to represent visually. For example ID of an object on the screen.
+const value = "9dddff8f-be81-4c27-80c8-099327865f3f";
+
+// icon is a <canvas> element
+<Hashicon value={value}/>
+
+// Same icon with 80px in size
+<Hashicon value={value} size={89}/>
+```
 
 Params
 ---
@@ -90,12 +108,12 @@ Development
 
 1. Install package dependencies locally:
 ```shell
-$ npm install
+$ yarn install
 ```
 
 2. Start development environment:
 ```shell
-$ npm run storybook
+$ yarn workspace @emeraldpay/hashicon run storybook
 ```
 
 A browser pointing to Storybook demo will start automatically. 
@@ -119,10 +137,10 @@ Build
 -----
 
 ```shell
-$ npm run build
+$ yarn build
 ```
 
-> Builds package into `lib/` folder.
+> Builds package into `lib/` folder inside each package.
 
 License
 -----
