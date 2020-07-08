@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+	"esModuleInterop": true,
+	"composite": true,
+	"allowSyntheticDefaultImports": true,
+	"outDir": "./lib",
+	"declaration": true,
+	"strict": false,
+	"jsx": "react",
+	"rootDir": "./src",
+	"forceConsistentCasingInFileNames": true
+  },
+  "include": [
+	"src/*.ts",
+	"src/*.tsx"
+  ],
+  "exclude": [
+	"../../node_modules",
+	"node_modules"
+  ]
+}

@@ -22,7 +22,7 @@ jobs:
           node-version: "12.x"
 
       - name: Instal JS dependencies
-        run: npm install
+        run: yarn install
 
       - name: Build Sources
-        run: npm run build
+        run: yarn build
