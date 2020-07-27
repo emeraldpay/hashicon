@@ -2,8 +2,22 @@ import renderer from './renderer';
 import {Params, DefaultParams} from './params';
 import {deepMerge} from './utils';
 import {keccak256} from 'js-sha3';
+import {BLAKE2s} from '@stablelib/blake2s';
 
-export {Params} from './params';
+export {Params, HasherType} from './params';
+
+const enc = new TextEncoder();
+const key = new Uint8Array(enc.encode("emerald/hashicon"));
+
+function hashKeccak(hash: string): Uint8Array {
+	return new Uint8Array(keccak256.arrayBuffer(hash));
+}
+
+function hashBlake2(hash: string): Uint8Array {
+	const hasher = new BLAKE2s(16, {key});
+	hasher.update(enc.encode(hash));
+	return hasher.digest();
+}
 
 export function hashicon(hash: string, options: number | Partial<Params> = {}): HTMLCanvasElement {
 	let extraParams = {};
@@ -16,9 +30,15 @@ export function hashicon(hash: string, options: number | Partial<Params> = {}): 
 
 	// Deep merge
 	const params: Params = deepMerge(DefaultParams, extraParams);
+	let result;
 
-	// encrypt hash to a keccak256 Uint16Array.
-	const uint16Array = new Uint16Array(keccak256.arrayBuffer(hash));
+	if (params.hasher == "blake2") {
+		result = new Uint16Array(hashBlake2(hash));
+	} else if (params.hasher == "legacy" || params.hasher == "keccak") {
+		result = new Uint16Array(hashKeccak(hash));
+	} else {
+		throw Error("Unsupported hasher: " + params.hasher)
+	}
 
-	return renderer(uint16Array, params);
+	return renderer(result, params);
 }

@@ -51,9 +51,10 @@
     "node": ">=8"
   },
   "dependencies": {
-    "js-sha3": "^0.8.0"
+    "@stablelib/blake2s": "^1.0.0"
   },
   "devDependencies": {
+    "js-sha3": "^0.8.0",
     "typescript": "^3.9.6",
     "rimraf": "^2.6.3",
     "jest": "24.8.0",

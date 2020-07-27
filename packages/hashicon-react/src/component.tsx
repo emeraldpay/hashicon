@@ -1,11 +1,12 @@
 import React from 'react';
 import {Component} from "react";
-import {Params, hashicon} from "@emeraldpay/hashicon";
+import {Params, hashicon, HasherType} from "@emeraldpay/hashicon";
 
 export interface Props {
 	value: string;
 	size?: number;
-	options?: Params
+	hasher?: HasherType;
+	options?: Params;
 }
 
 export class Hashicon extends Component<Props, {}> {
@@ -19,6 +20,9 @@ export class Hashicon extends Component<Props, {}> {
 		}
 		if (typeof this.props.size == "number") {
 			options = {...options, ...{size: this.props.size}};
+		}
+		if (typeof this.props.hasher == "string") {
+			options = {...options, ...{hasher: this.props.hasher}};
 		}
 		const icon = hashicon(value, options).toDataURL();
 		const attributes = {

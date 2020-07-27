@@ -10,8 +10,13 @@ export interface OptionalParam {
 	enabled: boolean;
 }
 
+// to use Keccak (legacy) hasher, please add dependency to js-sha3:
+// npm install js-sha3
+export type HasherType = 'blake2' | 'keccak' | 'legacy';
+
 export interface Params {
-	size: number,
+	hasher: HasherType;
+	size: number;
 	hue: Range;
 	saturation: Range;
 	lightness: Range;
@@ -23,6 +28,7 @@ export interface Params {
 }
 
 export const DefaultParams: Partial<Params> = {
+	hasher: "blake2",
 	hue: {min: 0, max: 360},
 	saturation: {min: 70, max: 100},
 	lightness: {min: 45, max: 65},

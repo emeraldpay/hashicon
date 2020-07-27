@@ -49,6 +49,10 @@ HashIcon's values are extracted from the hash, and controlled with the following
 ```js
 {
 
+// hasher for the input value. "blake2" is default 
+// can also be "keccak" (or "legacy"), at this case add dependency to "js-sha3" package
+hasher: "blake2",
+
 // size px (HiDPI/Retina aware)
 size: 100,
 
