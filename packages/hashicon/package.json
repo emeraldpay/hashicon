@@ -1,6 +1,6 @@
 {
   "name": "@emeraldpay/hashicon",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Hashicon - a visual representation of a hash value, as a hexagon",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
