@@ -3,6 +3,7 @@ import {Params, DefaultParams} from './params';
 import {deepMerge} from './utils';
 import {keccak256} from 'js-sha3';
 import {BLAKE2s} from '@stablelib/blake2s';
+import {TextEncoder} from 'text-encoding';
 
 export {Params, HasherType} from './params';
 
@@ -32,9 +33,9 @@ export function hashicon(hash: string, options: number | Partial<Params> = {}): 
 	const params: Params = deepMerge(DefaultParams, extraParams);
 	let result;
 
-	if (params.hasher == "blake2") {
+	if (params.hasher === "blake2") {
 		result = new Uint16Array(hashBlake2(hash));
-	} else if (params.hasher == "legacy" || params.hasher == "keccak") {
+	} else if (params.hasher === "legacy" || params.hasher === "keccak") {
 		result = new Uint16Array(hashKeccak(hash));
 	} else {
 		throw Error("Unsupported hasher: " + params.hasher)
