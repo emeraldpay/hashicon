@@ -21,7 +21,14 @@ export class Hashicon extends Component<Props, {}> {
 			options = {...options, ...{size: this.props.size}};
 		}
 		const icon = hashicon(value, options).toDataURL();
-		return <img src={icon} alt={value}/>;
+		const attributes = {
+			src: icon,
+			alt: value
+		};
+		if (typeof this.props.size == 'number') {
+			attributes["width"] = this.props.size;
+		}
+		return <img {...attributes}/>;
 	}
 
 }
