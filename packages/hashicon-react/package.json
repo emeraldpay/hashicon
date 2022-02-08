@@ -1,6 +1,6 @@
 {
   "name": "@emeraldpay/hashicon-react",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Hashicon React - React component for a visual representation of a hash value, as a hexagon",
   "types": "lib/index.d.ts",
   "main": "lib/index.js",
@@ -39,7 +39,7 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@emeraldpay/hashicon": "^0.5.1",
+    "@emeraldpay/hashicon": "^0.5.2",
     "react": "^16.8.0"
   },
   "devDependencies": {
