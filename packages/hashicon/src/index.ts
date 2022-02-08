@@ -3,7 +3,6 @@ import {Params, DefaultParams} from './params';
 import {deepMerge} from './utils';
 import {keccak256} from 'js-sha3';
 import {BLAKE2s} from '@stablelib/blake2s';
-import {TextEncoder} from 'text-encoding';
 
 export {Params, HasherType} from './params';
 
